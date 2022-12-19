@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
+
+
 
 public class TitleMenu : MonoBehaviour
 {
@@ -13,7 +17,7 @@ public class TitleMenu : MonoBehaviour
     private VisualElement _barraDeNavegacao;
     private Label _titulo;
     private VisualElement _fundo;
-    
+
     // Start is called before the first frame update
     void OnEnable()
     {
