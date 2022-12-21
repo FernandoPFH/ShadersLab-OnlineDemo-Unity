@@ -9,14 +9,20 @@ public class ShadersMenu : MonoBehaviour
     [SerializeField] private GameObject telaAnterior;
 
     private VisualElement root;
-    private VisualElement grid;
+    private VisualElement background;
 
     private Dictionary<String, Dictionary<String, int?>> leans;
     private Dictionary<String, Vector2> positions;
-    
+
+    private List<VisualElement> todosElementosDeShaders = new List<VisualElement>();
+
+    private Dictionary<String, List<Vector2>> possiblePositions = new Dictionary<string, List<Vector2>>();
+    private String state = "padrao";
+
     private MenusIniciaisActions menusControls;
 
     private bool searchBarActive = false;
+    private bool filtroBarActive = false;
     
     private void Awake()
     {
@@ -34,30 +40,34 @@ public class ShadersMenu : MonoBehaviour
 
         root.Q<Label>("BackArrow").RegisterCallback<ClickEvent>((type) => TransicaoDeTelaAnterior());
 
-        grid = root.Q<VisualElement>("GridElements");
-        
-        grid.Clear();
+        root.Q<VisualElement>("BotaoFiltros").RegisterCallback<ClickEvent>((type) => TransicaoDaBarraDeFiltros());
+            
+        background = root.Q<VisualElement>("Background");
 
         leans = new Dictionary<string, Dictionary<String, int?>>();
 
         positions = new Dictionary<string, Vector2>();
         
-        List<VisualElement> elementosAAdicionar = new List<VisualElement>();
-        
-        elementosAAdicionar.Add(CriarGridElement("teste","Dissolve"));
-        elementosAAdicionar.Add(CriarGridElement("teste1","Dissolve1"));
-        elementosAAdicionar.Add(CriarGridElement("teste2","Dissolve2"));
-        elementosAAdicionar.Add(CriarGridElement("teste3","Dissolve3"));
-        elementosAAdicionar.Add(CriarGridElement("teste4","Dissolve4"));
-        elementosAAdicionar.Add(CriarGridElement("teste5","Dissolve5"));
+        todosElementosDeShaders.Add(CriarGridElement("teste","Dissolve"));
+        todosElementosDeShaders.Add(CriarGridElement("teste1","Dissolve1"));
+        todosElementosDeShaders.Add(CriarGridElement("teste2","Dissolve2"));
+        todosElementosDeShaders.Add(CriarGridElement("teste3","Dissolve3"));
+        todosElementosDeShaders.Add(CriarGridElement("teste4","Dissolve4"));
+        todosElementosDeShaders.Add(CriarGridElement("teste5","Dissolve5"));
 
-        AdicionarElementosATela(elementosAAdicionar);
+        AdicionarElementosATela();
 
         Dictionary<String, int?> dici = new Dictionary<String, int?>();
         
         dici.Add("AparecerBarraDePesquisa",null);
         
         leans.Add("SearchBar",dici);
+
+        dici = new Dictionary<String, int?>();
+        
+        dici.Add("AparecerBarraDeFiltros",null);
+        
+        leans.Add("FiltrosBar",dici);
     }
 
     private void OnDisable()
@@ -104,12 +114,14 @@ public class ShadersMenu : MonoBehaviour
         dici.Add("GirarPoligono",null);
         
         dici.Add("MexerShadersPelaBarraDePesquisa",null);
+        dici.Add("AparecerBarraDeFiltros",null);
         
         leans.Add(name,dici);
 
         interactiveBox.RegisterCallback<MouseOverEvent>((type) =>
         {
-            foreach (String efeito in new List<String>{ "Expandir","MoverIcone","TirarNome","MoverPoligono","GirarPoligono"})
+            foreach (String efeito in new List<String>
+                         { "Expandir", "MoverIcone", "TirarNome", "MoverPoligono", "GirarPoligono" })
             {
                 if (leans[name][efeito] != null)
                 {
@@ -117,83 +129,18 @@ public class ShadersMenu : MonoBehaviour
                     leans[name][efeito] = null;
                 }
             }
-            
-            grid.Remove(root);
-            grid.Add(root);
-            
-            leans[name]["Expandir"] = LeanTween.value(root.style.scale.value.value.x, 1.2f, 1).setEaseOutExpo().setOnUpdate((float scale) =>
-            {
-                root.style.scale = new Scale(Vector3.one * scale);
-            }).uniqueId;
-            
-            leans[name]["MoverIcone"] = LeanTween.value(gameObject,new Vector2(icone.style.left.value.value,icone.style.bottom.value.value), new Vector2(4f,284f), 0.5f).setEaseOutExpo().setOnUpdate((Vector2 leftAndBottom) =>
-            {
-                icone.style.left = leftAndBottom.x;
-                icone.style.bottom = leftAndBottom.y;
-            }).uniqueId;
-            
-            leans[name]["TirarNome"] = LeanTween.value(nameElement.style.opacity.value, 0f, .2f).setEaseOutExpo().setOnUpdate((float alpha) =>
-            {
-                nameElement.style.opacity = alpha;
-            }).uniqueId;
-            
-            leans[name]["MoverPoligono"] = LeanTween.value(gameObject,new Vector2(poli.style.left.value.value,poli.style.bottom.value.value), new Vector2(-430f,257f), 1f).setEaseOutExpo().setOnUpdate((Vector2 posicao) =>
-            {
-                poli.style.left = posicao.x;
-                poli.style.bottom = posicao.y;
-            }).setOnComplete(() =>
-            {
-                poli.style.left = -430f;
-                poli.style.bottom = 257f;
-            }).uniqueId;
-            
-            leans[name]["GirarPoligono"] = LeanTween.value(poli.style.rotate.value.angle.value, 180f, 1f).setEaseOutExpo().setOnUpdate((float rotation) =>
-            {
-                poli.style.rotate = new Rotate(rotation);
-            }).setOnComplete(() => poli.style.rotate = new Rotate(180f)).uniqueId;
+
+            background.Remove(root);
+            background.Add(root);
+
+            AcaoDeEntradaESaidaDoMouse(name,root,icone, nameElement, poli,
+                1.2f, new Vector2(4f, 284f), 0f, new Vector2(-430f, 257f), 180f);
         });
-            
+
         interactiveBox.RegisterCallback<MouseOutEvent>((type1) =>
         {
-            foreach (String efeito in new List<String>{ "Expandir","MoverIcone","TirarNome","MoverPoligono","GirarPoligono"})
-            {
-                if (leans[name][efeito] != null)
-                {
-                    LeanTween.cancel((int)leans[name][efeito]);
-                    leans[name][efeito] = null;
-                }
-            }
-            
-            leans[name]["Expandir"] = LeanTween.value(root.style.scale.value.value.x, 1f, 1).setEaseOutExpo().setOnUpdate((float scale) =>
-            {
-                root.style.scale = new Scale(Vector3.one * scale);
-            }).uniqueId;
-            
-            leans[name]["MoverIcone"] = LeanTween.value(gameObject,new Vector2(icone.style.left.value.value,icone.style.bottom.value.value), new Vector2(21f,75f), 0.5f).setEaseOutExpo().setOnUpdate((Vector2 leftAndBottom) =>
-            {
-                icone.style.left = leftAndBottom.x;
-                icone.style.bottom = leftAndBottom.y;
-            }).uniqueId;
-            
-            leans[name]["TirarNome"] = LeanTween.value(nameElement.style.opacity.value,1f, .4f).setEaseOutExpo().setOnUpdate((float alpha) =>
-            {
-                nameElement.style.opacity = alpha;
-            }).uniqueId;
-            
-            leans[name]["MoverPoligono"] = LeanTween.value(gameObject,new Vector2(poli.style.left.value.value,poli.style.bottom.value.value), new Vector2(-67.33f,0f), 1f).setEaseOutExpo().setOnUpdate((Vector2 posicao) =>
-            {
-                poli.style.left = posicao.x;
-                poli.style.bottom = posicao.y;
-            }).setOnComplete(() =>
-            {
-                poli.style.left = -67.33f;
-                poli.style.bottom = 0f;
-            }).uniqueId;
-            
-            leans[name]["GirarPoligono"] = LeanTween.value(poli.style.rotate.value.angle.value, 0f, 1f).setEaseOutExpo().setOnUpdate((float rotation) =>
-            {
-                poli.style.rotate = new Rotate(rotation);
-            }).setOnComplete(() => poli.style.rotate = new Rotate(0f)).uniqueId;
+            AcaoDeEntradaESaidaDoMouse(name,root,icone, nameElement, poli,
+                1f, new Vector2(21f,75f), 1f, new Vector2(-67.33f,0f), 0f);
         });
 
         root.Add(interactiveBox);
@@ -203,39 +150,101 @@ public class ShadersMenu : MonoBehaviour
         return root;
     }
 
-    void AdicionarElementosATela(List<VisualElement> elementosAAdicionar)
+    void AcaoDeEntradaESaidaDoMouse(String name,VisualElement root,VisualElement icone, Label nameElement, VisualElement poli,float valorParaExpandirElemento, Vector2 posicaoParaMoverIcone, float valorParaAlphaNome, Vector2 posicaoParaMoverPoligono, float valorParaGirarPoligono)
     {
-        float y = 0f;
-        float x = 0f;
-
-        float maxRowSize = 1810f + 30f;
-        
-        foreach (VisualElement elementoAAdicionar in elementosAAdicionar)
+        foreach (String efeito in new List<String>{"Expandir","MoverIcone","TirarNome","MoverPoligono","GirarPoligono"})
         {
-            grid.Add(elementoAAdicionar);
-            
-            elementoAAdicionar.style.left = x;
-            elementoAAdicionar.style.top = y;
-            
-            positions.Add(elementoAAdicionar.name,new Vector2(x,y));
+            if (leans[name][efeito] != null)
+            {
+                LeanTween.cancel((int)leans[name][efeito]);
+                leans[name][efeito] = null;
+            }
+        }
 
-            x += 342f + 25f;
+        leans[name]["Expandir"] = leanTween(root.resolvedStyle.scale.value.x, valorParaExpandirElemento, 1f,
+            (scale => root.style.scale = new Scale(Vector3.one * scale))
+        );
+
+        leans[name]["MoverIcone"] = leanTween(new Vector2(icone.resolvedStyle.left, icone.resolvedStyle.bottom),
+            posicaoParaMoverIcone, 1f, (leftAndBottom =>
+            {
+                icone.style.left = leftAndBottom.x;
+                icone.style.bottom = leftAndBottom.y;
+            })
+        );
+
+        leans[name]["TirarNome"] = leanTween(nameElement.resolvedStyle.opacity, valorParaAlphaNome, .4f,
+            (alpha => nameElement.style.opacity = alpha));
+
+        leans[name]["MoverPoligono"] = leanTween(new Vector2(poli.resolvedStyle.left, poli.resolvedStyle.bottom),
+            posicaoParaMoverPoligono, 1f, (posicao =>
+            {
+                poli.style.left = posicao.x;
+                poli.style.bottom = posicao.y;
+            })
+        );
+
+        leans[name]["GirarPoligono"] = leanTween(poli.resolvedStyle.rotate.angle.value, valorParaGirarPoligono, 1f,
+            (rotation => poli.style.rotate = new Rotate(rotation)));
+    }
+
+    void CalcularPossiveisPosicoes(int numeroDeElementos)
+    {
+        possiblePositions = new Dictionary<string, List<Vector2>>();
+        
+        VisualElement topBar = root.Q<VisualElement>("TopBar");
+
+        // Posicao Padrao
+        possiblePositions.Add("padrao",CalcularPosicao(numeroDeElementos,55f, 69f+20f, 1810f + 30f, 342f + 25f,337f + 20f));
+        
+        // Posicao Busca
+        possiblePositions.Add("busca",CalcularPosicao(numeroDeElementos,55f, 69f+20f+87f, 1810f + 30f, 342f + 25f,337f + 20f));
+        
+        // Posicao Filtros
+        possiblePositions.Add("filtros",CalcularPosicao(numeroDeElementos,55f, 69f+20f+87f+58f, 1810f + 30f, 342f + 25f,337f + 20f));
+    }
+    
+    List<Vector2> CalcularPosicao(int numeroDeElementos,float x,float y,float maxRowSize,float width,float height)
+    {
+        List<Vector2> posicoes = new List<Vector2>();
+
+        float _x = x;
+
+        for (int i = 0; i < numeroDeElementos; i++)
+        {
+            posicoes.Add(new Vector2(x,y));
+
+            x += width;
 
             if (x > maxRowSize)
             {
-                x = 0f;
-                y += 337f + 20f;
-            
-                elementoAAdicionar.style.left = x;
-                elementoAAdicionar.style.top = y;
-            
-                positions[elementoAAdicionar.name] = new Vector2(x,y);
+                x = _x;
+                y += height;
             }
+        }
+
+        return posicoes;
+    }
+
+    void AdicionarElementosATela()
+    {
+        CalcularPossiveisPosicoes(todosElementosDeShaders.Count);
+
+        VisualElement background = root.Q<VisualElement>("Background");
+        
+        foreach (var elemento in todosElementosDeShaders)
+        {
+            background.Add(elemento);
+            
+            Vector2 posicao = possiblePositions["padrao"][todosElementosDeShaders.IndexOf(elemento)];
+            
+            elemento.style.left = posicao.x;
+            elemento.style.top = posicao.y;
         }
 
         LeanTween.value(0f, 1f, 1).setEaseOutExpo().setOnUpdate((float scale) =>
         {
-            foreach (VisualElement elementoAAdicionar in elementosAAdicionar)
+            foreach (VisualElement elementoAAdicionar in todosElementosDeShaders)
             {
                 elementoAAdicionar.style.scale = new Scale(Vector3.one * scale);
             }
@@ -246,7 +255,7 @@ public class ShadersMenu : MonoBehaviour
     {
         LeanTween.value(1f, 0f, 1).setEaseOutExpo().setOnUpdate((float scale) =>
         {
-            root.Query<VisualElement>(className: "GridElement").ForEach((VisualElement elemento) =>
+            todosElementosDeShaders.ForEach((VisualElement elemento) =>
             {
                 elemento.style.scale = new Scale(Vector3.one * scale);
             });
@@ -264,7 +273,7 @@ public class ShadersMenu : MonoBehaviour
                 searchBar.style.top = top;
             });
 
-        LeanTween.value(root.Q<VisualElement>("TopBar").style.top.value.value,-6f,1).setEaseOutExpo().setOnUpdate((float top)=>root.Q<VisualElement>("TopBar").style.top = Length.Percent(top)).setOnComplete(
+        LeanTween.value(root.Q<VisualElement>("TopBar").style.top.value.value,-6f,1).setEaseOutExpo().setOnUpdate((float top)=>topBar.style.top = Length.Percent(top)).setOnComplete(
             () =>
             {
                 gameObject.SetActive(false);
@@ -284,8 +293,18 @@ public class ShadersMenu : MonoBehaviour
             }
         }
         
+        foreach (String efeito in new List<String>{"AparecerBarraDeFiltros"})
+        {
+            if (leans["FiltrosBar"][efeito] != null)
+            {
+                LeanTween.cancel((int)leans["FiltrosBar"][efeito]);
+                leans["FiltrosBar"][efeito] = null;
+            }
+        }
+        
         VisualElement searchBar = root.Q<VisualElement>("SearchBar");
         VisualElement topBar = root.Q<VisualElement>("TopBar");
+        VisualElement filtroBar = root.Q<VisualElement>("Filtros");
         
         if (searchBarActive)
         {
@@ -293,25 +312,40 @@ public class ShadersMenu : MonoBehaviour
             {
                 searchBar.style.top = top;
             }).uniqueId;
-            
-            root.Query<VisualElement>(className: "GridElement").ForEach((VisualElement gridElement) =>
+
+            if (state.Contains("busca") || state.Contains("filtros"))
             {
-                float altura = positions[gridElement.name].y;
-                
-                foreach (String efeito in new List<String>{"MexerShadersPelaBarraDePesquisa"})
+                foreach (var elemento in todosElementosDeShaders)
                 {
-                    if (leans[gridElement.name][efeito] != null)
+                    float altura = possiblePositions["padrao"][todosElementosDeShaders.IndexOf(elemento)].y;
+                
+                    foreach (String efeito in new List<String>{"MexerShadersPelaBarraDePesquisa"})
                     {
-                        LeanTween.cancel((int)leans[gridElement.name][efeito]);
-                        leans[gridElement.name][efeito] = null;
+                        if (leans[elemento.name][efeito] != null)
+                        {
+                            LeanTween.cancel((int)leans[elemento.name][efeito]);
+                            leans[elemento.name][efeito] = null;
+                        }
                     }
+                
+                    leans[elemento.name]["MexerShadersPelaBarraDePesquisa"] = LeanTween.value(elemento.resolvedStyle.top, altura, 1).setEaseOutExpo().setOnUpdate((float altura1) =>
+                    {
+                        elemento.style.top = altura1;
+                    }).uniqueId;
+                }
+
+                if (state.Contains("filtros"))
+                {
+                    leans["FiltrosBar"]["AparecerBarraDeFiltros"] = LeanTween.value(filtroBar.resolvedStyle.top ,0f, 1f).setEaseOutExpo().setOnUpdate((float top) =>
+                    {
+                        filtroBar.style.top = top;
+                    }).uniqueId;
+                    
+                    filtroBarActive = !filtroBarActive;
                 }
                 
-                leans[gridElement.name]["MexerShadersPelaBarraDePesquisa"] = LeanTween.value(gridElement.resolvedStyle.top, altura, 1).setEaseOutExpo().setOnUpdate((float altura1) =>
-                {
-                    gridElement.style.top = altura1;
-                }).uniqueId;
-            });
+                state = "padrao";
+            }
         }
         else
         {
@@ -319,26 +353,119 @@ public class ShadersMenu : MonoBehaviour
             {
                 searchBar.style.top = top;
             }).uniqueId;
-            
-            root.Query<VisualElement>(className: "GridElement").ForEach((VisualElement gridElement) =>
+
+            if (state.Contains("padrao"))
             {
-                float altura = positions[gridElement.name].y;
-                
-                foreach (String efeito in new List<String>{"MexerShadersPelaBarraDePesquisa"})
+                foreach (var elemento in todosElementosDeShaders)
                 {
-                    if (leans[gridElement.name][efeito] != null)
+                    float altura = possiblePositions["busca"][todosElementosDeShaders.IndexOf(elemento)].y;
+                
+                    foreach (String efeito in new List<String>{"MexerShadersPelaBarraDePesquisa"})
                     {
-                        LeanTween.cancel((int)leans[gridElement.name][efeito]);
-                        leans[gridElement.name][efeito] = null;
+                        if (leans[elemento.name][efeito] != null)
+                        {
+                            LeanTween.cancel((int)leans[elemento.name][efeito]);
+                            leans[elemento.name][efeito] = null;
+                        }
                     }
-                }
                 
-                leans[gridElement.name]["MexerShadersPelaBarraDePesquisa"] = LeanTween.value(gridElement.resolvedStyle.top, altura+87f, 1).setEaseOutExpo().setOnUpdate((float altura1) =>
-                {
-                    gridElement.style.top = altura1;
-                }).uniqueId;
-            });
+                    leans[elemento.name]["MexerShadersPelaBarraDePesquisa"] = LeanTween.value(elemento.resolvedStyle.top, altura, 1).setEaseOutExpo().setOnUpdate((float altura1) =>
+                    {
+                        elemento.style.top = altura1;
+                    }).uniqueId;
+                }
+
+                state = "busca";
+            }
         }
         searchBarActive = !searchBarActive;
+    }
+    
+    void TransicaoDaBarraDeFiltros()
+    {
+        foreach (String efeito in new List<String>{"AparecerBarraDeFiltros"})
+        {
+            if (leans["FiltrosBar"][efeito] != null)
+            {
+                LeanTween.cancel((int)leans["FiltrosBar"][efeito]);
+                leans["FiltrosBar"][efeito] = null;
+            }
+        }
+        
+        VisualElement filtroBar = root.Q<VisualElement>("Filtros");
+        
+        if (filtroBarActive)
+        {
+            leans["FiltrosBar"]["AparecerBarraDeFiltros"] = LeanTween.value(filtroBar.resolvedStyle.top ,0, 1f).setEaseOutExpo().setOnUpdate((float top) =>
+            {
+                filtroBar.style.top = top;
+            }).uniqueId;
+
+            if (state.Contains("filtros"))
+            {
+                foreach (var elemento in todosElementosDeShaders)
+                {
+                    float altura = possiblePositions["busca"][todosElementosDeShaders.IndexOf(elemento)].y;
+                
+                    foreach (String efeito in new List<String>{"AparecerBarraDeFiltros"})
+                    {
+                        if (leans[elemento.name][efeito] != null)
+                        {
+                            LeanTween.cancel((int)leans[elemento.name][efeito]);
+                            leans[elemento.name][efeito] = null;
+                        }
+                    }
+                
+                    leans[elemento.name]["AparecerBarraDeFiltros"] = LeanTween.value(elemento.resolvedStyle.top, altura, 1).setEaseOutExpo().setOnUpdate((float altura1) =>
+                    {
+                        elemento.style.top = altura1;
+                    }).uniqueId;
+                }
+                
+                state = "busca";
+            }
+        }
+        else
+        {
+            leans["FiltrosBar"]["AparecerBarraDeFiltros"] = LeanTween.value(filtroBar.resolvedStyle.top ,79f, 1f).setEaseOutExpo().setOnUpdate((float top) =>
+            {
+                filtroBar.style.top = top;
+            }).uniqueId;
+
+            if (state.Contains("busca"))
+            {
+                foreach (var elemento in todosElementosDeShaders)
+                {
+                    float altura = possiblePositions["filtros"][todosElementosDeShaders.IndexOf(elemento)].y;
+                
+                    foreach (String efeito in new List<String>{"AparecerBarraDeFiltros"})
+                    {
+                        if (leans[elemento.name][efeito] != null)
+                        {
+                            LeanTween.cancel((int)leans[elemento.name][efeito]);
+                            leans[elemento.name][efeito] = null;
+                        }
+                    }
+                
+                    leans[elemento.name]["AparecerBarraDeFiltros"] = LeanTween.value(elemento.resolvedStyle.top, altura, 1).setEaseOutExpo().setOnUpdate((float altura1) =>
+                    {
+                        elemento.style.top = altura1;
+                    }).uniqueId;
+                }
+
+                state = "filtros";
+            }
+        }
+        filtroBarActive = !filtroBarActive;
+    }
+
+    int leanTween(float valorInicial, float valorFinal, float tempo,Action<float> funcao)
+    {
+        return LeanTween.value(valorInicial, valorFinal, tempo).setEaseOutExpo().setOnUpdate((float value) => funcao(value)).setOnComplete(_ => funcao(valorFinal)).uniqueId;
+    }
+
+    int leanTween(Vector2 valorInicial, Vector2 valorFinal, float tempo,Action<Vector2> funcao)
+    {
+        return LeanTween.value(gameObject,valorInicial, valorFinal, tempo).setEaseOutExpo().setOnUpdate((Vector2 value) => funcao(value)).setOnComplete(_ => funcao(valorFinal)).uniqueId;
     }
 }

@@ -1,30 +1,25 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/MenuInicial/UIToolkit/Css/Poligono.uss?fileID=7433441132597879392&amp;guid=38c8e6cef55b1aa418b3080c0e7134f3&amp;type=3#Poligono" />
     <ui:VisualElement name="Background" style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); opacity: 1; position: absolute; margin-bottom: 0; flex-direction: column;">
-        <ui:VisualElement name="SearchBar" style="height: 67px; background-color: rgb(184, 184, 184); border-top-left-radius: 29px; border-bottom-left-radius: 29px; border-top-right-radius: 29px; border-bottom-right-radius: 29px; align-items: center; justify-content: center; margin-bottom: 20px; margin-top: 0; top: -67px; position: absolute; left: 55px; width: 1810px; right: 55px;">
-            <ui:VisualElement style="height: 50px; width: 99%; border-top-left-radius: 22px; border-bottom-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; background-color: rgb(209, 209, 209); justify-content: flex-start; flex-direction: row; align-items: center;">
-                <ui:VisualElement name="IconeLupa" style="width: 42px; height: 42px; left: 15px; background-image: url(&apos;project://database/Assets/MenuInicial/lupa.svg?fileID=7388822144124034973&amp;guid=7c0b23f16006f41409a2a1c0e707d662&amp;type=3#lupa&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.95); position: absolute;" />
-                <ui:VisualElement style="width: 100%; height: 100%; left: auto; border-top-left-radius: 22px; border-bottom-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; justify-content: center; padding-left: 66px; padding-right: 195px;">
-                    <ui:TextField picking-mode="Ignore" value="filler text" text="Pesquise" name="SearchValue" style="background-color: rgba(0, 0, 0, 0); height: 100%;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="BotaoFiltros" style="height: 35px; width: 163px; right: 24px; align-items: center; position: absolute; background-color: rgba(0, 0, 0, 0.95); border-top-left-radius: 9px; border-bottom-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; justify-content: center;">
-                    <ui:Label text="Filtros" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; font-size: 32px; color: rgb(255, 255, 255);" />
+        <ui:VisualElement name="SearchBar" style="height: 67px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; align-items: center; justify-content: center; margin-bottom: 20px; margin-top: 0; top: -67px; position: absolute; left: 55px; width: 94.3%; right: auto;">
+            <ui:VisualElement name="Filtros" style="height: 47px; flex-direction: row; position: absolute; width: 1821px; padding-left: 16px; padding-right: 16px;">
+                <ui:VisualElement style="width: 197px; height: 100%; background-color: rgba(0, 0, 0, 0.95); border-top-left-radius: 11px; border-bottom-left-radius: 11px; border-top-right-radius: 11px; border-bottom-right-radius: 11px; top: auto; margin-right: 12px;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="width: 100%; align-items: center; justify-content: center; background-color: rgb(184, 184, 184); height: 100%; border-top-left-radius: 29px; border-bottom-left-radius: 29px; border-top-right-radius: 29px; border-bottom-right-radius: 29px;">
+                <ui:VisualElement style="height: 50px; width: 99%; border-top-left-radius: 22px; border-bottom-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; background-color: rgb(209, 209, 209); justify-content: flex-start; flex-direction: row; align-items: center; display: flex;">
+                    <ui:VisualElement name="IconeLupa" style="width: 42px; height: 42px; left: 15px; background-image: url(&apos;project://database/Assets/MenuInicial/lupa.svg?fileID=7388822144124034973&amp;guid=7c0b23f16006f41409a2a1c0e707d662&amp;type=3#lupa&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.95); position: absolute;" />
+                    <ui:VisualElement style="width: 100%; height: 100%; left: auto; border-top-left-radius: 22px; border-bottom-left-radius: 22px; border-top-right-radius: 22px; border-bottom-right-radius: 22px; justify-content: center; padding-left: 66px; padding-right: 195px;">
+                        <ui:TextField picking-mode="Ignore" value="filler text" text="Pesquise" name="SearchValue" style="background-color: rgba(0, 0, 0, 0); height: 100%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="BotaoFiltros" style="height: 35px; width: 163px; right: 24px; align-items: center; position: absolute; background-color: rgba(0, 0, 0, 0.95); border-top-left-radius: 9px; border-bottom-left-radius: 9px; border-top-right-radius: 9px; border-bottom-right-radius: 9px; justify-content: center;">
+                        <ui:Label text="Filtros" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; font-size: 32px; color: rgb(255, 255, 255);" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="TopBar" style="width: 100%; height: 6.5%; background-color: rgb(184, 184, 184); align-items: center; justify-content: flex-start; flex-direction: row; padding-bottom: 0; padding-top: -4px; overflow: visible;">
             <ui:Label text="ShadersLab" display-tooltip-when-elided="false" name="Title" style="font-size: 48px; -unity-text-align: middle-center; color: rgb(0, 0, 0); position: absolute; left: auto; top: 0; right: auto; bottom: 0; height: initial; margin-left: auto; margin-right: auto; width: 100%; padding-left: 0; padding-right: 0; flex-basis: 100%; align-items: center; justify-content: center;" />
             <ui:Label text="←" display-tooltip-when-elided="false" name="BackArrow" style="color: rgb(0, 0, 0); height: auto; font-size: 60px; margin-left: 14px; padding-left: 0; padding-right: 0; left: 0; position: absolute; top: 0; bottom: 0; width: auto; margin-right: auto; -unity-text-align: middle-center; align-items: center; justify-content: center;" />
-        </ui:VisualElement>
-        <ui:VisualElement name="Grid" style="height: 100%; padding-top: 20px; padding-left: 55px; padding-right: 55px; flex-direction: column; flex-wrap: nowrap; justify-content: flex-start; position: relative; margin-top: 0; width: 100%;">
-            <ui:VisualElement name="GridElements" style="height: 100%; flex-direction: row; flex-wrap: wrap;">
-                <ui:VisualElement name="invisibleElement" class="GridElement" style="display: flex; position: relative; visibility: visible;">
-                    <ui:VisualElement name="poli" class="Poli" style="position: relative; background-image: url(&apos;project://database/Assets/MenuInicial/Polygon.svg?fileID=7388822144124034973&amp;guid=8cb32c6d378d6834188c6aba5bbf46c6&amp;type=3#Polygon&apos;); -unity-background-image-tint-color: rgba(0, 0, 0, 0.8);" />
-                    <ui:Label text="Teste teste" display-tooltip-when-elided="true" name="name" class="Name" />
-                    <ui:VisualElement name="icone" class="Icone" />
-                    <ui:VisualElement name="interactiveBox" class="InteractiveBox" style="display: flex; visibility: visible;" />
-                </ui:VisualElement>
-            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
