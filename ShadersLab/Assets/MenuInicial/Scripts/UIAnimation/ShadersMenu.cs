@@ -10,11 +10,13 @@ public class ShadersMenu : MonoBehaviour
 
     private VisualElement root;
     private VisualElement background;
+    private VisualElement filtros;
 
     private Dictionary<String, Dictionary<String, int?>> leans;
     private Dictionary<String, Vector2> positions;
 
     private List<VisualElement> todosElementosDeShaders = new List<VisualElement>();
+    private List<VisualElement> todosFiltrosDeShaders = new List<VisualElement>();
 
     private Dictionary<String, List<Vector2>> possiblePositions = new Dictionary<string, List<Vector2>>();
     private String state = "padrao";
@@ -44,6 +46,8 @@ public class ShadersMenu : MonoBehaviour
             
         background = root.Q<VisualElement>("Background");
 
+        filtros = root.Q<VisualElement>("Filtros");
+
         leans = new Dictionary<string, Dictionary<String, int?>>();
 
         positions = new Dictionary<string, Vector2>();
@@ -55,7 +59,12 @@ public class ShadersMenu : MonoBehaviour
         todosElementosDeShaders.Add(CriarGridElement("teste4","Dissolve4"));
         todosElementosDeShaders.Add(CriarGridElement("teste5","Dissolve5"));
 
-        AdicionarElementosATela();
+        AdicionarElementosDeShadersATela();
+
+        todosFiltrosDeShaders.Add(CriarFilterElement("teste1","Ambiente"));
+        todosFiltrosDeShaders.Add(CriarFilterElement("teste2","Ambiente2"));
+
+        AdicionarElementosDeFiltrosATela();
 
         Dictionary<String, int?> dici = new Dictionary<String, int?>();
         
@@ -74,6 +83,35 @@ public class ShadersMenu : MonoBehaviour
     {
         menusControls.Disable();
     }
+
+    VisualElement CriarFilterElement(String name, String filterName)
+    {
+        VisualElement root = new VisualElement();
+        root.name = name;
+        root.AddToClassList("Filtro");
+        
+        VisualElement icone = new VisualElement();
+        icone.name = "icone";
+        icone.AddToClassList("Icone");
+        
+        root.Add(icone);
+        
+        Label nameElement = new Label();
+        nameElement.name = "name";
+        nameElement.text = filterName;
+        nameElement.AddToClassList("Name");
+        
+        root.Add(nameElement);
+        
+        VisualElement interactiveBox = new VisualElement();
+        interactiveBox.name = "interactiveBox";
+        interactiveBox.AddToClassList("InteractiveBox");
+
+        root.Add(interactiveBox);
+
+        return root;
+    }
+
 
     VisualElement CriarGridElement(String name, String shaderName)
     {
@@ -226,7 +264,7 @@ public class ShadersMenu : MonoBehaviour
         return posicoes;
     }
 
-    void AdicionarElementosATela()
+    void AdicionarElementosDeShadersATela()
     {
         CalcularPossiveisPosicoes(todosElementosDeShaders.Count);
 
@@ -249,6 +287,14 @@ public class ShadersMenu : MonoBehaviour
                 elementoAAdicionar.style.scale = new Scale(Vector3.one * scale);
             }
         });
+    }
+
+    void AdicionarElementosDeFiltrosATela()
+    {
+        foreach (var elemento in todosFiltrosDeShaders)
+        {
+            filtros.Add(elemento);
+        }
     }
 
     void TransicaoDeTelaAnterior()
