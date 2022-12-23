@@ -14,4 +14,7 @@ public class ShaderInfos : ScriptableObject
     public Texture2D MainImage;
     public List<Texture2D> OtherImages;
     public VideoClip MainVideo;
+
+    [NonSerialized] public VisualElement elementoDoMenu;
+    [NonSerialized] public bool escondido = false;
 }

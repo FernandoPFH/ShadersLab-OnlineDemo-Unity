@@ -22,7 +22,7 @@ MonoBehaviour:
     the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
     and more recently with desktop publishing software like Aldus PageMaker including
     versions of Lorem Ipsum.
-  MainImage: {fileID: 2800000, guid: 26e9c41a20b01bc4c9cdee60c2af36e4, type: 3}
+  MainImage: {fileID: 2800000, guid: f4c3fa819118039488f65fb0d71697a7, type: 3}
   OtherImages:
   - {fileID: 0}
   MainVideo: {fileID: 0}

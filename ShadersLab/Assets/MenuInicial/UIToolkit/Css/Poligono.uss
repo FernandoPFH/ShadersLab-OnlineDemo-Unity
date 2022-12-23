@@ -104,3 +104,15 @@
     flex-direction: row;
     align-items: center;
 }
+
+.Selecionado {
+    background-color: rgba(184, 184, 184, 255);
+}
+
+.Selecionado > .Icone {
+    -unity-background-image-tint-color: rgba(0, 0, 0, 255);
+}
+
+.Selecionado > .Name {
+    color: rgba(0, 0, 0, 255);
+}

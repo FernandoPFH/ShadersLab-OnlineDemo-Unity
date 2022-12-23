@@ -9,7 +9,6 @@ public class ShadersMenu : MonoBehaviour
     [SerializeField] private GameObject telaAnterior;
     
     [SerializeField] private List<ShaderInfos> shaders;
-    private List<ShaderInfos> shadersCopy;
 
     private VisualElement root;
     private VisualElement background;
@@ -26,12 +25,11 @@ public class ShadersMenu : MonoBehaviour
 
     private Dictionary<String, Dictionary<String, int?>> leans;
 
-    private List<VisualElement> todosElementosDeShaders;
-    private List<VisualElement> elementosDeShadersPesquisados;
     private List<VisualElement> todosFiltrosDeShaders;
 
     private Dictionary<String, List<Vector2>> possiblePositions;
     private String state;
+    private List<TipoInfos> filtrosSelecionados;
 
     private String whoClickedSideBar;
 
@@ -61,12 +59,14 @@ public class ShadersMenu : MonoBehaviour
         menusControls.Enable();
         
         root = GetComponent<UIDocument>().rootVisualElement;
-        
+
         menusControls.UI.Search.performed += _ => TransicaoDaBarraDeBusca();
+        
+        root.Q<TextField>("SearchValue").RegisterCallback<ChangeEvent<string>>(_ => FiltrarShaders());
 
-        root.Q<Label>("BackArrow").RegisterCallback<ClickEvent>((type) => TransicaoDeTelaAnterior());
+        root.Q<Label>("BackArrow").RegisterCallback<ClickEvent>(_ => TransicaoDeTelaAnterior());
 
-        root.Q<VisualElement>("BotaoFiltros").RegisterCallback<ClickEvent>((type) => TransicaoDaBarraDeFiltros());
+        root.Q<VisualElement>("BotaoFiltros").RegisterCallback<ClickEvent>(_ => TransicaoDaBarraDeFiltros());
             
         background = root.Q<VisualElement>("Background");
 
@@ -93,21 +93,66 @@ public class ShadersMenu : MonoBehaviour
         menusControls.Disable();
     }
 
+    void FiltrarShaders()
+    {
+        String novoTexto = root.Q<TextField>("SearchValue").text;
+        
+        foreach (var shaderInfo in shaders)
+        {
+            if (novoTexto == "Pesquise")
+                if (filtrosSelecionados.Count > 0)
+                    shaderInfo.escondido = !filtrosSelecionados.Contains(shaderInfo.Tipo);
+                else
+                    shaderInfo.escondido = false;
+            else
+                if (filtrosSelecionados.Count > 0)
+                    shaderInfo.escondido = !shaderInfo.Nome.Contains(novoTexto) ||
+                                           !filtrosSelecionados.Contains(shaderInfo.Tipo);
+                else
+                    shaderInfo.escondido = !shaderInfo.Nome.Contains(novoTexto);
+
+            if (shaderInfo.escondido)
+            {
+                leanCancel(shaderInfo.Nome,new List<string>{"DesaparecerAoPesquisar"});
+
+                leans["FiltrosBar"]["DesaparecerAoPesquisar"] =
+                    leanTween(shaderInfo.elementoDoMenu.resolvedStyle.opacity, 0f, .2f, (opacidade) =>
+                    {
+                        shaderInfo.elementoDoMenu.style.opacity = opacidade;
+                    });
+            }
+            else
+            {
+                leanCancel(shaderInfo.Nome,new List<string>{"DesaparecerAoPesquisar"});
+
+                leans["FiltrosBar"]["DesaparecerAoPesquisar"] =
+                    leanTween(shaderInfo.elementoDoMenu.resolvedStyle.opacity, 1f, .2f, (opacidade) =>
+                    {
+                        shaderInfo.elementoDoMenu.style.opacity = opacidade;
+                    });
+            }
+            
+            moverElementosDeShadersParaNovaPosicao(state,"MoverAoPesquisar");
+        }
+    }
+
     void PegarShadersEFiltros()
     {
-        shadersCopy = shaders;
-        
-        todosElementosDeShaders = new List<VisualElement>();
-        
         todosFiltrosDeShaders = new List<VisualElement>();
 
-        foreach (var shaderInfo in shadersCopy)
-        {
-            todosElementosDeShaders.Add(CriarGridElement(shaderInfo));
-            todosFiltrosDeShaders.Add(CriarFilterElement(shaderInfo.Tipo.Nome,shaderInfo.Tipo.Nome,shaderInfo.Tipo.Icone));
-        }
+        filtrosSelecionados = new List<TipoInfos>();
 
-        elementosDeShadersPesquisados = todosElementosDeShaders;
+        List<TipoInfos> tipos = new List<TipoInfos>();
+
+        foreach (var shaderInfo in shaders)
+        {
+            shaderInfo.elementoDoMenu = CriarGridElement(shaderInfo);
+            if (!tipos.Contains(shaderInfo.Tipo))
+            {
+                todosFiltrosDeShaders.Add(CriarFilterElement(shaderInfo));
+                tipos.Add(shaderInfo.Tipo);
+            }
+        }
         
         AdicionarElementosDeShadersATela();
 
@@ -137,22 +182,22 @@ public class ShadersMenu : MonoBehaviour
         leans.Add("SideBar",dici);
     }
 
-    VisualElement CriarFilterElement(String name, String filterName, VectorImage _icone)
+    VisualElement CriarFilterElement(ShaderInfos shaderInfo)
     {
         VisualElement root = new VisualElement();
-        root.name = name;
+        root.name = shaderInfo.Tipo.Nome;
         root.AddToClassList("Filtro");
         
         VisualElement icone = new VisualElement();
         icone.name = "icone";
-        icone.style.backgroundImage = new StyleBackground(_icone);
+        icone.style.backgroundImage = new StyleBackground(shaderInfo.Tipo.Icone);
         icone.AddToClassList("Icone");
         
         root.Add(icone);
         
         Label nameElement = new Label();
         nameElement.name = "name";
-        nameElement.text = filterName;
+        nameElement.text = shaderInfo.Tipo.Nome;
         nameElement.AddToClassList("Name");
         
         root.Add(nameElement);
@@ -160,6 +205,22 @@ public class ShadersMenu : MonoBehaviour
         VisualElement interactiveBox = new VisualElement();
         interactiveBox.name = "interactiveBox";
         interactiveBox.AddToClassList("InteractiveBox");
+        
+        interactiveBox.RegisterCallback<ClickEvent>(_ =>
+        {
+            if (filtrosSelecionados.Contains(shaderInfo.Tipo))
+            {
+                filtrosSelecionados.Remove(shaderInfo.Tipo);
+                root.RemoveFromClassList("Selecionado");
+            }
+            else
+            {
+                filtrosSelecionados.Add(shaderInfo.Tipo);
+                root.AddToClassList("Selecionado");
+            }
+
+            FiltrarShaders();
+        });
 
         root.Add(interactiveBox);
 
@@ -236,6 +297,9 @@ public class ShadersMenu : MonoBehaviour
 
         interactiveBox.RegisterCallback<ClickEvent>((type1) =>
         {
+            if (shaderInfo.escondido)
+                return;
+
             leanCancel("SideBar",
                 new List<String>{"AparecerBarraDeLado"});
             
@@ -359,17 +423,30 @@ public class ShadersMenu : MonoBehaviour
 
     void moverElementosDeShadersParaNovaPosicao(String state,String efeito)
     {
-        foreach (var elemento in elementosDeShadersPesquisados)
-        {
-            Vector2 posicao = possiblePositions[state][elementosDeShadersPesquisados.IndexOf(elemento)];
+        List<VisualElement> elementosAMover = new List<VisualElement>();
 
-            leanCancel(elemento.name, new List<string> { efeito });
+        foreach (var shaderInfo in shaders)
+        {
+            if (!shaderInfo.escondido)
+            {
+                elementosAMover.Add(shaderInfo.elementoDoMenu);
+            }
+        }
+
+        foreach (var elementoDoMenu in elementosAMover)
+        {
+            background.Remove(elementoDoMenu);
+            background.Add(elementoDoMenu);
             
-            leans[elemento.name][efeito] = leanTween(new Vector2(elemento.resolvedStyle.left,elemento.resolvedStyle.top), posicao, 1,
+            Vector2 posicao = possiblePositions[state][elementosAMover.IndexOf(elementoDoMenu)];
+
+            leanCancel(elementoDoMenu.name, new List<string> { efeito });
+            
+            leans[elementoDoMenu.name][efeito] = leanTween(new Vector2(elementoDoMenu.resolvedStyle.left,elementoDoMenu.resolvedStyle.top), posicao, 1,
                 (Vector2 posicao) =>
                 {
-                    elemento.style.left = posicao.x;
-                    elemento.style.top = posicao.y;
+                    elementoDoMenu.style.left = posicao.x;
+                    elementoDoMenu.style.top = posicao.y;
                 });
         }
 
@@ -410,8 +487,6 @@ public class ShadersMenu : MonoBehaviour
     void CalcularPossiveisPosicoes(int numeroDeElementos)
     {
         possiblePositions = new Dictionary<string, List<Vector2>>();
-        
-        VisualElement topBar = root.Q<VisualElement>("TopBar");
 
         // Posicao Padrao
         possiblePositions.Add("padrao",CalcularPosicao(numeroDeElementos,55f, 69f+20f, 1810f + 30f, 342f + 25f,337f + 20f));
@@ -456,25 +531,25 @@ public class ShadersMenu : MonoBehaviour
 
     void AdicionarElementosDeShadersATela()
     {
-        CalcularPossiveisPosicoes(todosElementosDeShaders.Count);
+        CalcularPossiveisPosicoes(shaders.Count);
 
         VisualElement background = root.Q<VisualElement>("Background");
         
-        foreach (var elemento in todosElementosDeShaders)
+        foreach (var shaderInfo in shaders)
         {
-            background.Add(elemento);
+            background.Add(shaderInfo.elementoDoMenu);
             
-            Vector2 posicao = possiblePositions["padrao"][todosElementosDeShaders.IndexOf(elemento)];
+            Vector2 posicao = possiblePositions["padrao"][shaders.IndexOf(shaderInfo)];
             
-            elemento.style.left = posicao.x;
-            elemento.style.top = posicao.y;
+            shaderInfo.elementoDoMenu.style.left = posicao.x;
+            shaderInfo.elementoDoMenu.style.top = posicao.y;
         }
 
         LeanTween.value(0f, 1f, 1).setEaseOutExpo().setOnUpdate((float scale) =>
         {
-            foreach (VisualElement elementoAAdicionar in todosElementosDeShaders)
+            foreach (var shaderInfo in shaders)
             {
-                elementoAAdicionar.style.scale = new Scale(Vector3.one * scale);
+                shaderInfo.elementoDoMenu.style.scale = new Scale(Vector3.one * scale);
             }
         });
     }
@@ -491,9 +566,9 @@ public class ShadersMenu : MonoBehaviour
     {
         LeanTween.value(1f, 0f, 1).setEaseOutExpo().setOnUpdate((float scale) =>
         {
-            todosElementosDeShaders.ForEach((VisualElement elemento) =>
+            shaders.ForEach((ShaderInfo) =>
             {
-                elemento.style.scale = new Scale(Vector3.one * scale);
+                ShaderInfo.elementoDoMenu.style.scale = new Scale(Vector3.one * scale);
             });
         });
 

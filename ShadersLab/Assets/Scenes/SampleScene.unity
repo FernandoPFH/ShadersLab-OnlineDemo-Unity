@@ -779,6 +779,15 @@ MonoBehaviour:
   telaAnterior: {fileID: 1453355517}
   shaders:
   - {fileID: 11400000, guid: f2c8f180a05e5194cbba87273f3cfefb, type: 2}
+  - {fileID: 11400000, guid: ca010cd03dca6fa40b649cca2220fd72, type: 2}
+  - {fileID: 11400000, guid: 8d27fb432ad9b784db4694c05a29ea77, type: 2}
+  - {fileID: 11400000, guid: 45b78446d6f838247b18607c0d7e4fa1, type: 2}
+  - {fileID: 11400000, guid: e88678411575c4c42bc4c0cb72f6bcb8, type: 2}
+  - {fileID: 11400000, guid: 6c91260f80008ec4b9a04caa2206e4d3, type: 2}
+  - {fileID: 11400000, guid: 4e5a4b7b8d5cc5e4fa4a5fca85d758c2, type: 2}
+  - {fileID: 11400000, guid: 4b19feaacfe639d429022785d8d1f3be, type: 2}
+  - {fileID: 11400000, guid: 105c986c9b9d7ea4a9ce67d7a7542e3b, type: 2}
+  - {fileID: 11400000, guid: 69761c6d46872d94ebd9c17cdab30686, type: 2}
 --- !u!1 &1453355517
 GameObject:
   m_ObjectHideFlags: 0
