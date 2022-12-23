@@ -2,7 +2,6 @@
     width: 342px;
     height: 337px;
     justify-content: flex-end;
-    background-image: url('project://database/Assets/MenuInicial/indieground_abstract_textures_main_02.jpg?fileID=2800000&guid=26e9c41a20b01bc4c9cdee60c2af36e4&type=3#indieground_abstract_textures_main_02');
     overflow: hidden;
     margin-right: 25px;
     margin-bottom: 20px;
@@ -38,7 +37,6 @@
     width: 46px;
     height: 46px;
     position: absolute;
-    background-image: url('project://database/Assets/MenuInicial/teste.svg?fileID=7388822144124034973&guid=4d54c4749f7013a4680c6fe29df60e5c&type=3#teste');
 }
 
 .GridElement > .InteractiveBox {
@@ -79,7 +77,6 @@
 .Filtro > .Icone {
     height: 38px;
     width: 38px;
-    background-image: url('project://database/Assets/MenuInicial/teste.svg?fileID=7388822144124034973&guid=4d54c4749f7013a4680c6fe29df60e5c&type=3#teste');
     margin-right: 10px;
     margin-left: 15px;
 }

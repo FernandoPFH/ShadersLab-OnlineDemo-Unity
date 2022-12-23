@@ -7,16 +7,27 @@ using UnityEngine.UIElements;
 public class ShadersMenu : MonoBehaviour
 {
     [SerializeField] private GameObject telaAnterior;
+    
+    [SerializeField] private List<ShaderInfos> shaders;
+    private List<ShaderInfos> shadersCopy;
 
     private VisualElement root;
     private VisualElement background;
     private VisualElement filtros;
     private VisualElement sideBar;
-    private VisualElement searchBar;
     
+    private VisualElement sideBarImage;
+    private Label sideBarName;
+    private VisualElement sideBarIcone;
+    private Label sideBarTipo;
+    private Label sideBarDescricao;
+    
+    private VisualElement searchBar;
+
     private Dictionary<String, Dictionary<String, int?>> leans;
 
     private List<VisualElement> todosElementosDeShaders;
+    private List<VisualElement> elementosDeShadersPesquisados;
     private List<VisualElement> todosFiltrosDeShaders;
 
     private Dictionary<String, List<Vector2>> possiblePositions;
@@ -63,14 +74,18 @@ public class ShadersMenu : MonoBehaviour
 
         sideBar = root.Q<VisualElement>("SideBar");
 
+        sideBarImage = sideBar.Q<VisualElement>("Image");
+        sideBarName = sideBar.Q<Label>("Name");
+        sideBarIcone = sideBar.Q<VisualElement>("Icone");
+        sideBarTipo = sideBar.Q<Label>("Tipo");
+        sideBarDescricao = sideBar.Q<Label>("Descricao");
+
         searchBar = root.Q<VisualElement>("SearchBar");
-
-
+        
+        
         AdicionarAnimacoesDeUI();
 
-        PegarShaders();
-
-        PegarFiltros();
+        PegarShadersEFiltros();
     }
 
     private void OnDisable()
@@ -78,26 +93,23 @@ public class ShadersMenu : MonoBehaviour
         menusControls.Disable();
     }
 
-    void PegarShaders()
+    void PegarShadersEFiltros()
     {
+        shadersCopy = shaders;
+        
         todosElementosDeShaders = new List<VisualElement>();
         
-        todosElementosDeShaders.Add(CriarGridElement("teste","Dissolve"));
-        todosElementosDeShaders.Add(CriarGridElement("teste1","Dissolve1"));
-        todosElementosDeShaders.Add(CriarGridElement("teste2","Dissolve2"));
-        todosElementosDeShaders.Add(CriarGridElement("teste3","Dissolve3"));
-        todosElementosDeShaders.Add(CriarGridElement("teste4","Dissolve4"));
-        todosElementosDeShaders.Add(CriarGridElement("teste5","Dissolve5"));
+        todosFiltrosDeShaders = new List<VisualElement>();
+
+        foreach (var shaderInfo in shadersCopy)
+        {
+            todosElementosDeShaders.Add(CriarGridElement(shaderInfo));
+            todosFiltrosDeShaders.Add(CriarFilterElement(shaderInfo.Tipo.Nome,shaderInfo.Tipo.Nome,shaderInfo.Tipo.Icone));
+        }
+
+        elementosDeShadersPesquisados = todosElementosDeShaders;
         
         AdicionarElementosDeShadersATela();
-    }
-
-    void PegarFiltros()
-    {
-        todosFiltrosDeShaders = new List<VisualElement>();
-        
-        todosFiltrosDeShaders.Add(CriarFilterElement("teste1","Ambiente"));
-        todosFiltrosDeShaders.Add(CriarFilterElement("teste2","Ambiente2"));
 
         AdicionarElementosDeFiltrosATela();
     }
@@ -125,7 +137,7 @@ public class ShadersMenu : MonoBehaviour
         leans.Add("SideBar",dici);
     }
 
-    VisualElement CriarFilterElement(String name, String filterName)
+    VisualElement CriarFilterElement(String name, String filterName, VectorImage _icone)
     {
         VisualElement root = new VisualElement();
         root.name = name;
@@ -133,6 +145,7 @@ public class ShadersMenu : MonoBehaviour
         
         VisualElement icone = new VisualElement();
         icone.name = "icone";
+        icone.style.backgroundImage = new StyleBackground(_icone);
         icone.AddToClassList("Icone");
         
         root.Add(icone);
@@ -154,10 +167,11 @@ public class ShadersMenu : MonoBehaviour
     }
 
 
-    VisualElement CriarGridElement(String name, String shaderName)
+    VisualElement CriarGridElement(ShaderInfos shaderInfo)
     {
         VisualElement root = new VisualElement();
-        root.name = name;
+        root.name = shaderInfo.Nome;
+        root.style.backgroundImage = new StyleBackground(shaderInfo.MainImage);
         root.AddToClassList("GridElement");
         
         VisualElement poli = new VisualElement();
@@ -168,13 +182,14 @@ public class ShadersMenu : MonoBehaviour
         
         Label nameElement = new Label();
         nameElement.name = "name";
-        nameElement.text = shaderName;
+        nameElement.text = shaderInfo.Nome;
         nameElement.AddToClassList("Name");
         
         root.Add(nameElement);
         
         VisualElement icone = new VisualElement();
         icone.name = "icone";
+        icone.style.backgroundImage = new StyleBackground(shaderInfo.Tipo.Icone);
         icone.AddToClassList("Icone");
         
         root.Add(icone);
@@ -196,23 +211,26 @@ public class ShadersMenu : MonoBehaviour
         dici.Add("AparecerBarraDeFiltros",null);
         dici.Add("AparecerBarraDeLado",null);
         
-        leans.Add(name,dici);
+        dici.Add("DesaparecerAoPesquisar",null);
+        dici.Add("MoverAoPesquisar",null);
+        
+        leans.Add(shaderInfo.Nome,dici);
 
         interactiveBox.RegisterCallback<MouseOverEvent>((type) =>
         {
-            leanCancel(name,
+            leanCancel(shaderInfo.Nome,
                 new List<String> { "Expandir", "MoverIcone", "TirarNome", "MoverPoligono", "GirarPoligono" });
 
             background.Remove(root);
             background.Add(root);
 
-            AcaoDeEntradaESaidaDoMouse(name,root,icone, nameElement, poli,
+            AcaoDeEntradaESaidaDoMouse(shaderInfo.Nome,root,icone, nameElement, poli,
                 1.2f, new Vector2(4f, 284f), 0f, new Vector2(-430f, 257f), 180f);
         });
 
         interactiveBox.RegisterCallback<MouseOutEvent>((type1) =>
         {
-            AcaoDeEntradaESaidaDoMouse(name,root,icone, nameElement, poli,
+            AcaoDeEntradaESaidaDoMouse(shaderInfo.Nome,root,icone, nameElement, poli,
                 1f, new Vector2(21f,75f), 1f, new Vector2(-67.33f,0f), 0f);
         });
 
@@ -225,17 +243,29 @@ public class ShadersMenu : MonoBehaviour
             {
                 if (state == "padrao")
                 {
+                    sideBarImage.style.backgroundImage = new StyleBackground(shaderInfo.MainImage);
+                    sideBarName.text = shaderInfo.Nome;
+                    sideBarIcone.style.backgroundImage = new StyleBackground(shaderInfo.Tipo.Icone);
+                    sideBarTipo.text = shaderInfo.Tipo.Nome;
+                    sideBarDescricao.text = shaderInfo.Descricao;
+                    
                     leans["SideBar"]["AparecerBarraDeLado"] = leanTween(-sideBar.resolvedStyle.right, 0f, 1f,
                         (right => sideBar.style.right = right));
 
                     moverElementosDeShadersParaNovaPosicao("dados", "AparecerBarraDeLado");
-
-                    whoClickedSideBar = name;
+                    
+                    whoClickedSideBar = shaderInfo.Nome;
                 }
                 else
                 {
                     if (state == "busca")
                     {
+                        sideBarImage.style.backgroundImage = new StyleBackground(shaderInfo.MainImage);
+                        sideBarName.text = shaderInfo.Nome;
+                        sideBarIcone.style.backgroundImage = new StyleBackground(shaderInfo.Tipo.Icone);
+                        sideBarTipo.text = shaderInfo.Tipo.Nome;
+                        sideBarDescricao.text = shaderInfo.Descricao;
+                        
                         leans["SideBar"]["AparecerBarraDeLado"] = leanTween(-sideBar.resolvedStyle.right, 0f, 1f,
                             (right => sideBar.style.right = right));
                         
@@ -244,10 +274,16 @@ public class ShadersMenu : MonoBehaviour
 
                         moverElementosDeShadersParaNovaPosicao("dados+busca", "AparecerBarraDeLado");
 
-                        whoClickedSideBar = name;
+                        whoClickedSideBar = shaderInfo.Nome;
                     }
                     else
                     {
+                        sideBarImage.style.backgroundImage = new StyleBackground(shaderInfo.MainImage);
+                        sideBarName.text = shaderInfo.Nome;
+                        sideBarIcone.style.backgroundImage = new StyleBackground(shaderInfo.Tipo.Icone);
+                        sideBarTipo.text = shaderInfo.Tipo.Nome;
+                        sideBarDescricao.text = shaderInfo.Descricao;
+                        
                         leans["SideBar"]["AparecerBarraDeLado"] = leanTween(-sideBar.resolvedStyle.right, 0f, 1f,
                             (right => sideBar.style.right = right));
                         
@@ -256,13 +292,13 @@ public class ShadersMenu : MonoBehaviour
 
                         moverElementosDeShadersParaNovaPosicao("dados+filtros","AparecerBarraDeLado");
 
-                        whoClickedSideBar = name;
+                        whoClickedSideBar = shaderInfo.Nome;
                     }
                 }
             }
             else
             {
-                if (whoClickedSideBar.Contains(name))
+                if (whoClickedSideBar == shaderInfo.Nome)
                 {
                     if (state == "dados")
                     {
@@ -303,7 +339,13 @@ public class ShadersMenu : MonoBehaviour
                 }
                 else
                 {
-                    whoClickedSideBar = name;
+                    sideBarImage.style.backgroundImage = new StyleBackground(shaderInfo.MainImage);
+                    sideBarName.text = shaderInfo.Nome;
+                    sideBarIcone.style.backgroundImage = new StyleBackground(shaderInfo.Tipo.Icone);
+                    sideBarTipo.text = shaderInfo.Tipo.Nome;
+                    sideBarDescricao.text = shaderInfo.Descricao;
+                    
+                    whoClickedSideBar = shaderInfo.Nome;
                 }
             }
         });
@@ -317,12 +359,12 @@ public class ShadersMenu : MonoBehaviour
 
     void moverElementosDeShadersParaNovaPosicao(String state,String efeito)
     {
-        foreach (var elemento in todosElementosDeShaders)
+        foreach (var elemento in elementosDeShadersPesquisados)
         {
-            Vector2 posicao = possiblePositions[state][todosElementosDeShaders.IndexOf(elemento)];
+            Vector2 posicao = possiblePositions[state][elementosDeShadersPesquisados.IndexOf(elemento)];
+
+            leanCancel(elemento.name, new List<string> { efeito });
             
-            leanCancel(elemento.name,new List<string>{efeito});
-                
             leans[elemento.name][efeito] = leanTween(new Vector2(elemento.resolvedStyle.left,elemento.resolvedStyle.top), posicao, 1,
                 (Vector2 posicao) =>
                 {

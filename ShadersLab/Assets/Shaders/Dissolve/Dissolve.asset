@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306488777633f5549adc4370ea370935, type: 3}
+  m_Name: Dissolve
+  m_EditorClassIdentifier: 
+  Nome: Dissolve
+  Tipo: {fileID: 11400000, guid: b1601d2e2c369594192492ef5730b496, type: 2}
+  Descricao: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+    when an unknown printer took a galley of type and scrambled it to make a type
+    specimen book. It has survived not only five centuries, but also the leap into
+    electronic typesetting, remaining essentially unchanged. It was popularised in
+    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+    and more recently with desktop publishing software like Aldus PageMaker including
+    versions of Lorem Ipsum.
+  MainImage: {fileID: 2800000, guid: 26e9c41a20b01bc4c9cdee60c2af36e4, type: 3}
+  OtherImages:
+  - {fileID: 0}
+  MainVideo: {fileID: 0}

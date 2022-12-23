@@ -777,6 +777,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   telaAnterior: {fileID: 1453355517}
+  shaders:
+  - {fileID: 11400000, guid: f2c8f180a05e5194cbba87273f3cfefb, type: 2}
 --- !u!1 &1453355517
 GameObject:
   m_ObjectHideFlags: 0
