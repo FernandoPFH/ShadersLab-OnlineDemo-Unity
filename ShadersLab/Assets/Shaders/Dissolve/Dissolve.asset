@@ -9,20 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306488777633f5549adc4370ea370935, type: 3}
+  m_Script: {fileID: 11500000, guid: 702b40c5b4ef7484cab5199ca9658242, type: 3}
   m_Name: Dissolve
   m_EditorClassIdentifier: 
   Nome: Dissolve
-  Tipo: {fileID: 11400000, guid: b1601d2e2c369594192492ef5730b496, type: 2}
-  Descricao: Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-    when an unknown printer took a galley of type and scrambled it to make a type
-    specimen book. It has survived not only five centuries, but also the leap into
-    electronic typesetting, remaining essentially unchanged. It was popularised in
-    the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-    and more recently with desktop publishing software like Aldus PageMaker including
-    versions of Lorem Ipsum.
-  MainImage: {fileID: 2800000, guid: f4c3fa819118039488f65fb0d71697a7, type: 3}
-  OtherImages:
-  - {fileID: 0}
-  MainVideo: {fileID: 0}
+  Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
+  MainImage: {fileID: 21300000, guid: f4c3fa819118039488f65fb0d71697a7, type: 3}
