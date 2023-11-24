@@ -1019,6 +1019,7 @@ MonoBehaviour:
   shadersInfos:
   - {fileID: 11400000, guid: d5ff24c38e18adc4eaf82963b202f65d, type: 2}
   - {fileID: 11400000, guid: 5d1348b0df625524093dc171b09f90b7, type: 2}
+  - {fileID: 11400000, guid: 9127dad208de5964eb96169e87844cad, type: 2}
 --- !u!114 &512164691
 MonoBehaviour:
   m_ObjectHideFlags: 0
