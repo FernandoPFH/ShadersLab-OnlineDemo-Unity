@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TransicaoAnimada
+  m_Name: LuzPiscante
   m_Shader: {fileID: 4800000, guid: 667dcdfc2cf965d4e8d53d5786d3331f, type: 3}
-  m_Parent: {fileID: 2100000, guid: f8569ea4185821f438f0190fac781a02, type: 2}
+  m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -24,12 +24,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MaskTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: fbe6e80cd9587334fb840031de89c672, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Vel: 1
     m_Colors:
-    - _Cor: {r: 0, g: 0.011367798, b: 1, a: 1}
+    - _Cor: {r: 0, g: 0.04815674, b: 1, a: 1}
   m_BuildTextureStacks: []
