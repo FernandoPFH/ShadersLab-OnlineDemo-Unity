@@ -30,5 +30,6 @@ Material:
     - _Min: 0.02
     - _Threshold: 0
     m_Colors:
-    - _Color: {r: 0.24292453, g: 0.6473272, b: 0.9716981, a: 1}
+    - _Color: {r: 0.24313726, g: 0.972549, b: 0.62259376, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
