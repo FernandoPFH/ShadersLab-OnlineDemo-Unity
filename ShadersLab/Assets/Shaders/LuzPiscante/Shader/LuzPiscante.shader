@@ -1,4 +1,4 @@
-Shader "Unlit/NewUnlitShader"
+Shader "Unlit/LuzPiscante"
 {
     Properties
     {
@@ -34,6 +34,7 @@ Shader "Unlit/NewUnlitShader"
             };
 
             sampler2D _MaskTex;
+            float4 _MaskTex_ST;
             fixed4 _Cor;
             float _Vel;
 
@@ -41,6 +42,7 @@ Shader "Unlit/NewUnlitShader"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                o.uv = TRANSFORM_TEX(v.uv, _MaskTex);
                 return o;
             }
 
