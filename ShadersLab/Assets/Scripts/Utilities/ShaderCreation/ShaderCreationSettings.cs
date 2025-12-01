@@ -1,0 +1,26 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "ShaderCreationSettings", menuName = "ScriptableObjects/Utilities/ShaderCreationSettings")]
+public class ShaderCreationSettings : SelfLoadedScriptableObject<ShaderCreationSettings>
+{
+    public static string ShadersFolderPath => Instance.shadersFolderPath;
+    [SerializeField]
+    private string shadersFolderPath = "Assets/Shaders";
+
+    [Header("Placeholders/Templates")]
+    public static Sprite PlaceholdImage => Instance.placeholdImage;
+    [SerializeField]
+    private Sprite placeholdImage;
+
+    public static TextAsset ReadmeTemplate => Instance.readmeTemplate;
+    [SerializeField]
+    private TextAsset readmeTemplate;
+
+    public static TextAsset ShaderTemplate => Instance.shaderTemplate;
+    [SerializeField]
+    private TextAsset shaderTemplate;
+
+    public static TextAsset ShaderGraphTemplate => Instance.shaderGraphTemplate;
+    [SerializeField]
+    private TextAsset shaderGraphTemplate;
+}

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nome: Post Processing
   Icone: {fileID: 3286163911610860551, guid: b2357b1941dfb1e4d9fb06df667db81d, type: 3}
+  IsShaderGraph: 1

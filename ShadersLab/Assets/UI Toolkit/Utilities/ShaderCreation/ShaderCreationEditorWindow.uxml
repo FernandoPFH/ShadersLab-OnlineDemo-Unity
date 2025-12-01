@@ -1,0 +1,14 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Root">
+        <ui:Label text="New Shader" name="Header" style="-unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 30px;" />
+        <ui:VisualElement name="NameHolder">
+            <ui:TextField label="Name" name="Name" placeholder-text="Name" style="-unity-text-align: middle-left; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="TypeHolder">
+            <ui:DropdownField label="Type" name="Type" style="color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="ButtonsHolder" style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+            <ui:Button text="Create Shader" name="Submit" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
