@@ -44,10 +44,10 @@ public static class ShaderCreation
         Directory.CreateDirectory(shaderRootPath);
         Directory.CreateDirectory(shaderResourcesRootPath);
 
-
         // Create Extras directory and populate it with placehold image
         Directory.CreateDirectory(Path.Combine(shaderResourcesRootPath, "Extras"));
-        File.Copy(AssetDatabase.GetAssetPath(ShaderCreationSettings.PlaceholdImage), Path.Combine(shaderResourcesRootPath, "Extras", "main.png"));
+        string mainImagePath = Path.Combine(shaderResourcesRootPath, "Extras", "main.png");
+        CreateSprite(ShaderCreationSettings.PlaceholdImage.texture, mainImagePath);
 
         // Create Shader directory and populate it with an shader and material file
         CreateShaderMaterialFiles(shaderName, shaderNameWithSpaces, shaderRootPath, type);
@@ -63,7 +63,7 @@ public static class ShaderCreation
         ShaderInfos asset = ScriptableObject.CreateInstance<ShaderInfos>();
         asset.Nome = shaderNameWithSpaces;
         asset.Tipo = type;
-        asset.MainImage = ShaderCreationSettings.PlaceholdImage;
+        asset.MainImage = AssetDatabase.LoadAssetAtPath<Sprite>(mainImagePath);
         AssetDatabase.CreateAsset(asset, Path.Combine(shaderResourcesRootPath, $"{shaderName}.asset"));
 
         // Update Unity Assets
@@ -110,7 +110,18 @@ public static class ShaderCreation
             if (!Directory.Exists(Path.Combine(shaderResourcesDirectory, "Extras")))
             {
                 Directory.CreateDirectory(Path.Combine(shaderResourcesDirectory, "Extras"));
-                File.Copy(AssetDatabase.GetAssetPath(ShaderCreationSettings.PlaceholdImage), Path.Combine(shaderResourcesDirectory, "Extras", "main.png"));
+
+                Material materialAsset = AssetDatabase.LoadAssetAtPath<Material>(Directory.GetFiles(shaderDirectory, "*.mat").First());
+                Texture2D preview = AssetPreview.GetAssetPreview(materialAsset);
+
+                int counter = 0;
+                while (preview == null && counter < 100000)
+                {
+                    preview = AssetPreview.GetAssetPreview(materialAsset);
+                    counter++;
+                }
+
+                CreateSprite(preview, Path.Combine(shaderResourcesDirectory, "Extras", "main.png"));
             }
 
             if (!File.Exists(Path.Combine(shaderResourcesDirectory, "README.md")))
@@ -128,13 +139,28 @@ public static class ShaderCreation
                 ShaderInfos asset = ScriptableObject.CreateInstance<ShaderInfos>();
                 asset.Nome = shaderNameWithSpaces;
                 asset.Tipo = type;
-                asset.MainImage = ShaderCreationSettings.PlaceholdImage;
+                asset.MainImage = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(shaderResourcesDirectory, "Extras", "main.png"));
                 AssetDatabase.CreateAsset(asset, Path.Combine(shaderResourcesDirectory, $"{shaderName}.asset"));
             }
         }
 
         // Update Unity Assets
         AssetDatabase.Refresh();
+    }
+
+    private static void CreateSprite(Texture2D image, string path)
+    {
+        Texture2D clonedImage = new Texture2D(image.width, image.height, image.format, image.mipmapCount > 1);
+
+        Graphics.CopyTexture(image, clonedImage);
+
+        File.WriteAllBytes(path, clonedImage.EncodeToPNG());
+
+        AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+        TextureImporter textureImporter = AssetImporter.GetAtPath(path) as TextureImporter;
+        textureImporter.textureType = TextureImporterType.Sprite;
+        textureImporter.spriteImportMode = SpriteImportMode.Single;
+        AssetDatabase.ImportAsset(path);
     }
 
     #endregion
