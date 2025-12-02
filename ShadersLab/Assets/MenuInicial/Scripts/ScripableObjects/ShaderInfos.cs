@@ -1,14 +1,15 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.Video;
 
-[CreateAssetMenu(fileName = "Shader", menuName = "ScriptableObjects/ShaderInfos", order = 1)]
-public class ShaderInfos : ScriptableObject
+[CreateAssetMenu(fileName = "Shader", menuName = "ScriptableObjects/ShaderInfos")]
+public class ShaderInfos : SelfLoadedScriptableObject<ShaderInfos>
 {
-    public String Nome;
+    public static HashSet<ShaderInfos> Instances { get; private set; } = new();
+
+    protected override void SetInstance()
+        => Instances.Add(this);
+
+    public string Nome;
     public TipoInfos Tipo;
     public Sprite MainImage;
 }

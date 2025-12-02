@@ -22,8 +22,8 @@ public class ShaderCreationEditorWindowManager : EditorWindow
 
         // Populate Type Dropdown
         DropdownField typeField = root.Q<DropdownField>("Type");
-        typeField.choices = TipoInfos.Types.Keys.ToList();
-        typeField.value = TipoInfos.Types.Keys.First();
+        typeField.choices = TipoInfos.Instances.Keys.ToList();
+        typeField.value = typeField.choices.First();
 
         // Populate OnClick event
         root.Q<Button>("Submit").clicked += () => Submit(root.Q<TextField>("Name").value, typeField.value);

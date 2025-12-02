@@ -1,23 +1,14 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Type", menuName = "ScriptableObjects/TypeInfos", order = 1)]
 public class TipoInfos : SelfLoadedScriptableObject<TipoInfos>
 {
-    public static Dictionary<string, TipoInfos> Types => types;
-    private static Dictionary<string, TipoInfos> types = new();
+    public static Dictionary<string, TipoInfos> Instances { get; private set; } = new();
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        types[Nome] = this;
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        types[Nome] = this;
-    }
+    protected override void SetInstance()
+        => Instances[Nome] = this;
 
     public string Nome;
     public Sprite Icone;

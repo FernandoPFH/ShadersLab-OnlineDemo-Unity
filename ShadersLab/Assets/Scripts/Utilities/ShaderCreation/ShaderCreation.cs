@@ -29,11 +29,12 @@ public static class ShaderCreation
     {
         shaderName = shaderName.Replace(" ", "");
         string shaderNameWithSpaces = Regex.Replace(shaderName, "([A-Z])", " $1").Trim();
-        TipoInfos type = TipoInfos.Types[typeName];
+        TipoInfos type = TipoInfos.Instances[typeName];
 
         string shaderRootPath = Path.Combine(ShaderCreationSettings.ShadersFolderPath, shaderName);
+        string shaderResourcesRootPath = Path.Combine(ShaderCreationSettings.ShadersResourcesFolderPath, shaderName);
 
-        if (Directory.Exists(shaderRootPath))
+        if (Directory.Exists(shaderResourcesRootPath))
         {
             Debug.LogError("Shader Creation: Shader already exists!");
             return;
@@ -41,27 +42,29 @@ public static class ShaderCreation
 
         // Create Shader Root directory
         Directory.CreateDirectory(shaderRootPath);
+        Directory.CreateDirectory(shaderResourcesRootPath);
+
 
         // Create Extras directory and populate it with placehold image
-        Directory.CreateDirectory(Path.Combine(shaderRootPath, "Extras"));
-        File.Copy(AssetDatabase.GetAssetPath(ShaderCreationSettings.PlaceholdImage), Path.Combine(shaderRootPath, "Extras", "main.png"));
+        Directory.CreateDirectory(Path.Combine(shaderResourcesRootPath, "Extras"));
+        File.Copy(AssetDatabase.GetAssetPath(ShaderCreationSettings.PlaceholdImage), Path.Combine(shaderResourcesRootPath, "Extras", "main.png"));
 
         // Create Shader directory and populate it with an shader and material file
         CreateShaderMaterialFiles(shaderName, shaderNameWithSpaces, shaderRootPath, type);
 
         // Populate Shader Root directory
-        File.WriteAllText(Path.Combine(shaderRootPath, "README.md"), ShaderCreationSettings.ReadmeTemplate.text.PopulateTemplate(new()
+        File.WriteAllText(Path.Combine(shaderResourcesRootPath, "README.md"), ShaderCreationSettings.ReadmeTemplate.text.PopulateTemplate(new()
         {
             { "Name", shaderNameWithSpaces},
             { "Type", typeName},
-            { "TypePath", Path.GetRelativePath(shaderRootPath,AssetDatabase.GetAssetPath(type.Icone))},
+            { "TypePath", Path.GetRelativePath(shaderResourcesRootPath,AssetDatabase.GetAssetPath(type.Icone))},
         }));
 
         ShaderInfos asset = ScriptableObject.CreateInstance<ShaderInfos>();
         asset.Nome = shaderNameWithSpaces;
         asset.Tipo = type;
         asset.MainImage = ShaderCreationSettings.PlaceholdImage;
-        AssetDatabase.CreateAsset(asset, Path.Combine(shaderRootPath, $"{shaderName}.asset"));
+        AssetDatabase.CreateAsset(asset, Path.Combine(shaderResourcesRootPath, $"{shaderName}.asset"));
 
         // Update Unity Assets
         AssetDatabase.Refresh();
@@ -69,10 +72,9 @@ public static class ShaderCreation
 
     private static void CreateShaderMaterialFiles(string shaderName, string shaderNameWithSpaces, string shaderRootPath, TipoInfos type)
     {
-        string shaderPath = Path.Combine(shaderRootPath, "Shader");
-        string shaderFilePath = Path.Combine(shaderPath, shaderName + (type.IsShaderGraph ? ".shadergraph" : $".shader"));
+        string shaderFilePath = Path.Combine(shaderRootPath, shaderName + (type.IsShaderGraph ? ".shadergraph" : $".shader"));
 
-        Directory.CreateDirectory(shaderPath);
+        Directory.CreateDirectory(shaderRootPath);
         File.WriteAllText(
             shaderFilePath,
             (type.IsShaderGraph ? ShaderCreationSettings.ShaderGraphTemplate.text : ShaderCreationSettings.ShaderTemplate.text).PopulateTemplate(new()
@@ -83,7 +85,7 @@ public static class ShaderCreation
         AssetDatabase.ImportAsset(shaderFilePath, ImportAssetOptions.ForceSynchronousImport);
         Shader shaderAsset = AssetDatabase.LoadAssetAtPath<Shader>(shaderFilePath);
         Material material = new Material(shaderAsset);
-        AssetDatabase.CreateAsset(material, Path.Combine(shaderPath, $"{shaderName}.mat"));
+        AssetDatabase.CreateAsset(material, Path.Combine(shaderRootPath, $"{shaderName}.mat"));
     }
 
     #endregion
@@ -99,31 +101,35 @@ public static class ShaderCreation
         {
             string shaderName = shaderDirectory.Split(Path.DirectorySeparatorChar).Last();
             string shaderNameWithSpaces = Regex.Replace(shaderName, "([A-Z])", " $1").Trim();
-            TipoInfos type = TipoInfos.Types.First().Value;
+            TipoInfos type = TipoInfos.Instances.First().Value;
+            string shaderResourcesDirectory = Path.Combine(ShaderCreationSettings.ShadersResourcesFolderPath, shaderName);
 
-            if (!Directory.Exists(Path.Combine(shaderDirectory, "Extras")))
+            if (!Directory.Exists(shaderResourcesDirectory))
+                Directory.CreateDirectory(shaderResourcesDirectory);
+
+            if (!Directory.Exists(Path.Combine(shaderResourcesDirectory, "Extras")))
             {
-                Directory.CreateDirectory(Path.Combine(shaderDirectory, "Extras"));
-                File.Copy(AssetDatabase.GetAssetPath(ShaderCreationSettings.PlaceholdImage), Path.Combine(shaderDirectory, "Extras", "main.png"));
+                Directory.CreateDirectory(Path.Combine(shaderResourcesDirectory, "Extras"));
+                File.Copy(AssetDatabase.GetAssetPath(ShaderCreationSettings.PlaceholdImage), Path.Combine(shaderResourcesDirectory, "Extras", "main.png"));
             }
 
-            if (!File.Exists(Path.Combine(shaderDirectory, "README.md")))
+            if (!File.Exists(Path.Combine(shaderResourcesDirectory, "README.md")))
             {
-                File.WriteAllText(Path.Combine(shaderDirectory, "README.md"), ShaderCreationSettings.ReadmeTemplate.text.PopulateTemplate(new()
+                File.WriteAllText(Path.Combine(shaderResourcesDirectory, "README.md"), ShaderCreationSettings.ReadmeTemplate.text.PopulateTemplate(new()
                 {
                     { "Name", shaderNameWithSpaces},
                     { "Type", type.Nome},
-                    { "TypePath", Path.GetRelativePath(shaderDirectory,AssetDatabase.GetAssetPath(type.Icone))},
+                    { "TypePath", Path.GetRelativePath(shaderResourcesDirectory,AssetDatabase.GetAssetPath(type.Icone))},
                 }));
             }
 
-            if (!File.Exists(Path.Combine(shaderDirectory, $"{shaderName}.asset")))
+            if (!File.Exists(Path.Combine(shaderResourcesDirectory, $"{shaderName}.asset")))
             {
                 ShaderInfos asset = ScriptableObject.CreateInstance<ShaderInfos>();
                 asset.Nome = shaderNameWithSpaces;
                 asset.Tipo = type;
                 asset.MainImage = ShaderCreationSettings.PlaceholdImage;
-                AssetDatabase.CreateAsset(asset, Path.Combine(shaderDirectory, $"{shaderName}.asset"));
+                AssetDatabase.CreateAsset(asset, Path.Combine(shaderResourcesDirectory, $"{shaderName}.asset"));
             }
         }
 

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d932df4e75aec7f90b613786c60a2713, type: 3}
+  m_Name: TelaDeEscolhaSettings
+  m_EditorClassIdentifier: 
+  shaderInfosToDisplay:
+  - {fileID: 11400000, guid: d5ff24c38e18adc4eaf82963b202f65d, type: 2}
+  - {fileID: 11400000, guid: a155caf8eda2953459b9c37f37d25ac4, type: 2}
+  - {fileID: 11400000, guid: 9127dad208de5964eb96169e87844cad, type: 2}
+  - {fileID: 11400000, guid: f012e5a3f97c7a449aee8ee3ed9e6e52, type: 2}
+  - {fileID: 11400000, guid: b07d908555f697849bdb14ca98e8b19c, type: 2}
+  - {fileID: 11400000, guid: 5d1348b0df625524093dc171b09f90b7, type: 2}

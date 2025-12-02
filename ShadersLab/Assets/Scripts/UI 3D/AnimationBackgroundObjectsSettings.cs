@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AnimationBackgroundObjectsSettings", menuName = "ScriptableObjects/Utilities/AnimationBackgroundObjectsSettings")]
+[CreateAssetMenu(fileName = "AnimationBackgroundObjectsSettings", menuName = "ScriptableObjects/UI 3D/AnimationBackgroundObjectsSettings")]
 public class AnimationBackgroundObjectsSettings : SelfLoadedScriptableObject<AnimationBackgroundObjectsSettings>
 {
     public static float InitialDelay => Instance.initialDelay;

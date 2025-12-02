@@ -6,6 +6,9 @@ public class ShaderCreationSettings : SelfLoadedScriptableObject<ShaderCreationS
     public static string ShadersFolderPath => Instance.shadersFolderPath;
     [SerializeField]
     private string shadersFolderPath = "Assets/Shaders";
+    public static string ShadersResourcesFolderPath => Instance.shadersResourcesFolderPath;
+    [SerializeField]
+    private string shadersResourcesFolderPath = "Assets/Resources/Shaders";
 
     [Header("Placeholders/Templates")]
     public static Sprite PlaceholdImage => Instance.placeholdImage;
