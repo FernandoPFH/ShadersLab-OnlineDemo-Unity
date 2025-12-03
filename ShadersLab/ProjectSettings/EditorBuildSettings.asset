@@ -8,4 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuInicial.unity
     guid: 0ae2c466075c949468bfbda61518f8ce
+  - enabled: 1
+    path: Assets/Scenes/ShaderDisplay.unity
+    guid: 34fb6d552af81768284e7c8760d5badf
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

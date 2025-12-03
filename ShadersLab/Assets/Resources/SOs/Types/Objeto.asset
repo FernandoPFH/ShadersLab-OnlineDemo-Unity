@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nome: Objeto
   Icone: {fileID: 3286163911610860551, guid: 80af9e1a13452b349a77d63733646442, type: 3}
+  IsShaderGraph: 0
+  sceneSetupHandler: {fileID: 11400000, guid: 7252e259ab9b1bed59e8e72def5d3728, type: 2}
+  cameraHandler: {fileID: 11400000, guid: 3a150d3f6f168cbff9e8d1bbd4c574aa, type: 2}

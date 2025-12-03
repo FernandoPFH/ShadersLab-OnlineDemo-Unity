@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Type", menuName = "ScriptableObjects/TypeInfos", order = 1)]
@@ -13,4 +12,6 @@ public class TipoInfos : SelfLoadedScriptableObject<TipoInfos>
     public string Nome;
     public Sprite Icone;
     public bool IsShaderGraph = false;
+    public SceneSetupHandler sceneSetupHandler;
+    public CameraHandler cameraHandler;
 }

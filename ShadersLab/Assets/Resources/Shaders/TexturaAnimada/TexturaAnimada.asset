@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nome: Textura Animada
   Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
-  MainImage: {fileID: 21300000, guid: 543087605f3f7414c8447c7df689e097, type: 3}
+  MainImage: {fileID: 21300000, guid: 9f740619b073abd09a9044e200bea94a, type: 3}
+  Material: {fileID: 2100000, guid: 762bc265c5c2d2645ba843bdf2969542, type: 2}

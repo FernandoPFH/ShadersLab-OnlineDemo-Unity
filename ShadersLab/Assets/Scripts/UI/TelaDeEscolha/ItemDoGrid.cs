@@ -47,7 +47,7 @@ public class ItemDoGrid : MonoBehaviour
     {
         if (Time.time - lastPressTime < 0.4f)
         {
-            Debug.Log("Open Shader");
+            SceneTransitionManager.OpenShaderDisplayScene(shaderInfos);
             return;
         }
 

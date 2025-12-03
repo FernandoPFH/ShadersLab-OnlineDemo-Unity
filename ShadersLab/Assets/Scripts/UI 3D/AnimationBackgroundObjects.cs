@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class AnimationBackgroundObjects : MonoBehaviour
+public class AnimationBackgroundObjects : Singleton<AnimationBackgroundObjects>
 {
     private AnimationState state;
     private float TimeElapsed;

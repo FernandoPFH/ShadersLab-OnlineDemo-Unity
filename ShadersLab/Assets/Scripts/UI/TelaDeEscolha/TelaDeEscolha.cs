@@ -107,4 +107,10 @@ public class TelaDeEscolha : Singleton<TelaDeEscolha>
             foreach (ItemDoGrid itemDoGrid in Instance.itensDoGridCriados)
                 itemDoGrid.Show();
     }
+
+    public void HandleBackPress()
+    {
+        searchBarHolder.CloseUI();
+        shaderSummaryHolder.CloseUI();
+    }
 }

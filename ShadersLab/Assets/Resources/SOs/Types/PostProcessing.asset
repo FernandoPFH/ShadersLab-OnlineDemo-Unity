@@ -15,3 +15,5 @@ MonoBehaviour:
   Nome: Post Processing
   Icone: {fileID: 3286163911610860551, guid: b2357b1941dfb1e4d9fb06df667db81d, type: 3}
   IsShaderGraph: 1
+  sceneSetupHandler: {fileID: 11400000, guid: 6cfd3a5f83a0c44a2a23c6b755c54fb0, type: 2}
+  cameraHandler: {fileID: 11400000, guid: 32e7bc922ad8baf23a52744c41764e2a, type: 2}

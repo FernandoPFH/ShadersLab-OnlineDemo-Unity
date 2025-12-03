@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Shader", menuName = "ScriptableObjects/ShaderInfos")]
@@ -12,4 +13,15 @@ public class ShaderInfos : SelfLoadedScriptableObject<ShaderInfos>
     public string Nome;
     public TipoInfos Tipo;
     public Sprite MainImage;
+    public Material Material;
+    public bool TemObjetoInicial;
+    [ShowIf("TemObjetoInicial")]
+    public string NomeObjetoInicial;
+
+    public SceneSetupHandler SceneSetupHandler => overrideTypeSceneSetupHandler ? overrideTypeSceneSetupHandler : Tipo.sceneSetupHandler;
+
+    [SerializeField] private SceneSetupHandler overrideTypeSceneSetupHandler;
+
+    public CameraHandler CameraHandler => overrideTypeCameraHandler ? overrideTypeCameraHandler : Tipo.cameraHandler;
+    [SerializeField] private CameraHandler overrideTypeCameraHandler;
 }

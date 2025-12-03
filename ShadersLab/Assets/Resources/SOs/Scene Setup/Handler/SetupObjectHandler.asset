@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e1af3307707a990dbaa6c189ec60a21, type: 3}
+  m_Name: SetupObjectHandler
+  m_EditorClassIdentifier: 
+  defaultObjects:
+    items:
+    - Key: Capsule
+      Value: {fileID: 3333573594738143360, guid: 5150cb14f0fbe72d58e1f89c354b5370,
+        type: 3}
+    - Key: Cube
+      Value: {fileID: 6864296069779919977, guid: 6ab5fbab9df7e1b138d18efd71177d67,
+        type: 3}
+    - Key: Cylinder
+      Value: {fileID: 290700426555521890, guid: c69e1bf03ce2b043382aeb0e5bfdf5f2,
+        type: 3}
+    - Key: Sphere
+      Value: {fileID: 6704518331323252197, guid: 3b77b85fd1997006fa36dadca23ad21b,
+        type: 3}

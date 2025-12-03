@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nome: Luz Piscante
   Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
-  MainImage: {fileID: 21300000, guid: 2c1e8e81fdfa44b488a327a99dda57d1, type: 3}
+  MainImage: {fileID: 21300000, guid: d4a9f2d0c19c71e4ab3e54d7f671d9a1, type: 3}
+  Material: {fileID: 2100000, guid: f8569ea4185821f438f0190fac781a02, type: 2}
