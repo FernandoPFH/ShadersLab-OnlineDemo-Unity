@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b40c5b4ef7484cab5199ca9658242, type: 3}
+  m_Name: CubemapReflection
+  m_EditorClassIdentifier: 
+  Nome: Cubemap Reflection
+  Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
+  MainImage: {fileID: 21300000, guid: 4c983a7095afe4afb895860c7398a157, type: 3}
+  Material: {fileID: 2100000, guid: 2ba92b674247812328fb94cf0dfacec8, type: 2}
+  TemObjetoInicial: 0
+  NomeObjetoInicial: 
+  overrideTypeSceneSetupHandler: {fileID: 0}
+  overrideTypeCameraHandler: {fileID: 0}
