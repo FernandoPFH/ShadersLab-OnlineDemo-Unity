@@ -140,6 +140,7 @@ public static class ShaderCreation
                 asset.Nome = shaderNameWithSpaces;
                 asset.Tipo = type;
                 asset.MainImage = AssetDatabase.LoadAssetAtPath<Sprite>(Path.Combine(shaderResourcesDirectory, "Extras", "main.png"));
+                asset.Material = AssetDatabase.LoadAssetAtPath<Material>(Directory.GetFiles(shaderDirectory, "*.mat").First());
                 AssetDatabase.CreateAsset(asset, Path.Combine(shaderResourcesDirectory, $"{shaderName}.asset"));
             }
         }

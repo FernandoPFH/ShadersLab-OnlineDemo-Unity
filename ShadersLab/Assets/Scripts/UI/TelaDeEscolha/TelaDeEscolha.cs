@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,10 @@ public class TelaDeEscolha : Singleton<TelaDeEscolha>
 
     void Start()
     {
-        foreach (ShaderInfos shaderInfo in ShaderInfos.Instances)
+        List<ShaderInfos> shaderInfos = ShaderInfos.Instances.ToList();
+        shaderInfos.Sort((a, b) => a.Nome.CompareTo(b.Nome));
+
+        foreach (ShaderInfos shaderInfo in shaderInfos)
             CriarItem(shaderInfo);
     }
 

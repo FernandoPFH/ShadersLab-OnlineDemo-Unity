@@ -29,6 +29,12 @@ public class HoverCameraHandler : CameraHandler
 
     public override void OnUpdate()
     {
+        if (!camera)
+            return;
+
+        if (ShaderEditorUI.IsUIBeingHover)
+            return;
+
         if (!mouseIsBeingHold && Input.GetMouseButton((int)holdKey))
             mouseIsBeingHold = true;
 

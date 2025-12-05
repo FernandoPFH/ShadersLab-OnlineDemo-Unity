@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683551eb7045d6af6b7d2e226b5212c3, type: 3}
+  m_Name: ShaderEditorUISettings
+  m_EditorClassIdentifier: 
+  uiCreatorPerType:
+    items:
+    - Key: Color
+      Value: {fileID: 11400000, guid: 945733b2f12bcf8988174ba6020afbc6, type: 2}
+    - Key: Float
+      Value: {fileID: 11400000, guid: 68af11f13372172349549b8f3d235b76, type: 2}
+    - Key: Range
+      Value: {fileID: 11400000, guid: 3b329877385a025809a366d8c7efba34, type: 2}
+    - Key: Vector
+      Value: {fileID: 11400000, guid: 5983394bc31df5625acfc24cee2502b9, type: 2}
+    - Key: Texture
+      Value: {fileID: 11400000, guid: 78d8a6ab50523bf8fab118a440df4429, type: 2}
+    - Key: Cube
+      Value: {fileID: 11400000, guid: 78d8a6ab50523bf8fab118a440df4429, type: 2}
+    - Key: Toggle
+      Value: {fileID: 11400000, guid: d0de875b344fb4d97a28726161c885b9, type: 2}
+    - Key: MaterialToggle
+      Value: {fileID: 11400000, guid: d0de875b344fb4d97a28726161c885b9, type: 2}

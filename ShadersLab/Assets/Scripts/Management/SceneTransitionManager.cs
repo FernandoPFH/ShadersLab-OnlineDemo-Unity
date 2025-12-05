@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class SceneTransitionManager : Singleton<SceneTransitionManager>
@@ -51,6 +50,8 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         CurrentShaderInfos.CameraHandler.OnSceneStart();
 
         CurrentShaderInfos.SceneSetupHandler.SetupNewMaterial(CurrentShaderInfos.Material);
+
+        ShaderEditorUI.GenerateUI(CurrentShaderInfos.Material);
     }
 
     private void ResetScene(AsyncOperation _)
@@ -63,6 +64,8 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         mainCamera.gameObject.SetActive(true);
         TelaDeEscolha.Instance.transform.parent.gameObject.SetActive(true);
         AnimationBackgroundObjects.Instance.gameObject.SetActive(true);
+
+        ShaderEditorUI.ClearUI();
     }
 
     private void OnApplicationQuit()
