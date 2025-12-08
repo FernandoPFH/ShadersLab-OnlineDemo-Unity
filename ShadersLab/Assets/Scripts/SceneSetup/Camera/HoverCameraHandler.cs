@@ -36,6 +36,9 @@ public class HoverCameraHandler : CameraHandler
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
+        if (LabelDragger.IsBeingDragged)
+            return;
+
         if (!mouseIsBeingHold && Input.GetMouseButton((int)holdKey))
             mouseIsBeingHold = true;
 

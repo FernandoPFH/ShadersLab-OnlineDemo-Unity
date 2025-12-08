@@ -557,6 +557,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShaderFloatUI
       objectReference: {fileID: 0}
+    - target: {fileID: 3724717716224239520, guid: d1e96d827de28e86e8900970265e6d96,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3724717716224239520, guid: d1e96d827de28e86e8900970265e6d96,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7138842823773409430, guid: d1e96d827de28e86e8900970265e6d96,
         type: 3}
       propertyPath: m_Pivot.x
@@ -689,7 +699,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2528262436633280806}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4719490656678518221, guid: d1e96d827de28e86e8900970265e6d96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8798378439410741954}
   m_SourcePrefab: {fileID: 100100000, guid: d1e96d827de28e86e8900970265e6d96, type: 3}
 --- !u!224 &57336549954692582 stripped
 RectTransform:
@@ -697,3 +711,22 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7195046794608145776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2496981350896593085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4719490656678518221, guid: d1e96d827de28e86e8900970265e6d96,
+    type: 3}
+  m_PrefabInstance: {fileID: 7195046794608145776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8798378439410741954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496981350896593085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d364eade4e7a57f0b9b59c10ca0af144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 2949406057757533668}
