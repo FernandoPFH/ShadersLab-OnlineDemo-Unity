@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [CreateAssetMenu(fileName = "HoverCameraHandler", menuName = "ScriptableObjects/Scene Setup/Camera/HoverCameraHandler")]
 public class HoverCameraHandler : CameraHandler
@@ -32,7 +33,7 @@ public class HoverCameraHandler : CameraHandler
         if (!camera)
             return;
 
-        if (ShaderEditorUI.IsUIBeingHover)
+        if (EventSystem.current.IsPointerOverGameObject())
             return;
 
         if (!mouseIsBeingHold && Input.GetMouseButton((int)holdKey))

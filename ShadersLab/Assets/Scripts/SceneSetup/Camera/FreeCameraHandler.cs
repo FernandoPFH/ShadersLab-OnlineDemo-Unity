@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [CreateAssetMenu(fileName = "FreeCameraHandler", menuName = "ScriptableObjects/Scene Setup/Camera/FreeCameraHandler")]
 public class FreeCameraHandler : CameraHandler
@@ -33,7 +34,7 @@ public class FreeCameraHandler : CameraHandler
         if (!camera)
             return;
 
-        if (ShaderEditorUI.IsUIBeingHover)
+        if (EventSystem.current.IsPointerOverGameObject())
             return;
 
         if (!mouseIsBeingHold && Input.GetMouseButton((int)holdKey))

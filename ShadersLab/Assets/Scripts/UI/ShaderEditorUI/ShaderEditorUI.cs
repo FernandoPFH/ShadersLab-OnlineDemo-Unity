@@ -12,8 +12,6 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
     [SerializeField] private Transform scrollViewContentContainer;
     [SerializeField] private EventTrigger eventTrigger;
     [SerializeField] private GameObject header;
-    public static bool IsUIBeingHover => Instance.isUIBeingHover;
-    private bool isUIBeingHover;
 
     private float openHeight;
     private float closeHeight;
@@ -22,16 +20,6 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
 
     void Start()
     {
-        EventTrigger.Entry entryHoverEnter = new EventTrigger.Entry();
-        entryHoverEnter.eventID = EventTriggerType.PointerEnter;
-        entryHoverEnter.callback.AddListener((eventData) => { isUIBeingHover = true; });
-        eventTrigger.triggers.Add(entryHoverEnter);
-
-        EventTrigger.Entry entryHoverExit = new EventTrigger.Entry();
-        entryHoverExit.eventID = EventTriggerType.PointerExit;
-        entryHoverExit.callback.AddListener((eventData) => { isUIBeingHover = false; });
-        eventTrigger.triggers.Add(entryHoverExit);
-
         rectTransform = transform as RectTransform;
 
         VerticalLayoutGroup verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
