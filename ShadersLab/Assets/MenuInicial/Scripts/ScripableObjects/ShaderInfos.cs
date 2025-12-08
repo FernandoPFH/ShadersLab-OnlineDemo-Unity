@@ -17,6 +17,7 @@ public class ShaderInfos : SelfLoadedScriptableObject<ShaderInfos>
     public bool TemObjetoInicial;
     [ShowIf("TemObjetoInicial")]
     public string NomeObjetoInicial;
+    public List<string> texturesToShow = new();
 
     public SceneSetupHandler SceneSetupHandler => overrideTypeSceneSetupHandler ? overrideTypeSceneSetupHandler : Tipo.sceneSetupHandler;
 

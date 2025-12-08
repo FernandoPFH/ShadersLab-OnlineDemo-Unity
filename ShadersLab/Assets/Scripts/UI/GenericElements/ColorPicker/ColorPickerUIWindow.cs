@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ColorPickerUIWindow : Singleton<ColorPickerUIWindow>, IDragHandler
+public class ColorPickerUIWindow : MonoBehaviour, IDragHandler
 {
     [SerializeField] private Image colorPreview;
     [SerializeField] private ColorPickerGradientUI colorPickerGradientUI;

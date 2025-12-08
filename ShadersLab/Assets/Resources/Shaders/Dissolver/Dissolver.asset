@@ -18,3 +18,5 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: 4f22fd58a5f30524a825e07d8f648e9b, type: 2}
   TemObjetoInicial: 0
   NomeObjetoInicial: 
+  overrideTypeSceneSetupHandler: {fileID: 0}
+  overrideTypeCameraHandler: {fileID: 0}

@@ -16,7 +16,9 @@ MonoBehaviour:
   Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
   MainImage: {fileID: 21300000, guid: 6cea55dc2a2ba40c0a5e598d5bcf7cab, type: 3}
   Material: {fileID: 2100000, guid: caac7d56f754c1fdf9a234ad38bd0a9f, type: 2}
-  TemObjetoInicial: 0
-  NomeObjetoInicial: 
+  TemObjetoInicial: 1
+  NomeObjetoInicial: Plane
+  texturesToShow:
+  - Numbers
   overrideTypeSceneSetupHandler: {fileID: 0}
   overrideTypeCameraHandler: {fileID: 0}

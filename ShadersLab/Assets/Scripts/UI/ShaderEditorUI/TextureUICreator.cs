@@ -54,12 +54,11 @@ public class TextureUIData : ShaderUIData<Texture2D>
         TMP_InputField[] textfields = ui.GetComponentsInChildren<TMP_InputField>();
         Image preview = ui.GetComponentsInChildren<Image>().Last();
 
-        preview.sprite = Sprite.Create(
-            initialValue,
-            new Rect(0, 0, initialValue.width, initialValue.height),
-            new Vector2(0.5f, 0.5f),
-            100f
-        );
+        TexturePickerUI texturePickerUI = ui.GetComponentInChildren<TexturePickerUI>();
+
+        texturePickerUI.SetTexture(initialValue);
+
+        texturePickerUI.onValueChanged.AddListener((texture) => material.SetTexture(nameID, texture));
 
         (Vector2, Action<int, Vector2>)[] textureData = new (Vector2, Action<int, Vector2>)[] { (material.GetTextureScale(nameID), (int nameId, Vector2 lastPartData) => material.SetTextureScale(nameID, lastPartData)), (material.GetTextureOffset(nameID), (int nameId, Vector2 lastPartData) => material.SetTextureOffset(nameID, lastPartData)) };
         texturesDefaultData = textureData;
@@ -120,5 +119,7 @@ public class TextureUIData : ShaderUIData<Texture2D>
 
             partIndex++;
         }
+
+        UI.GetComponentInChildren<TexturePickerUI>().SetTexture(defaultValue);
     }
 }

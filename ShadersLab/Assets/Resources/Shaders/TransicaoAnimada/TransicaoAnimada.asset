@@ -18,5 +18,7 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: d49544a5ba5aaa047be6501477799c42, type: 2}
   TemObjetoInicial: 0
   NomeObjetoInicial: 
+  texturesToShow:
+  - Animated Transition
   overrideTypeSceneSetupHandler: {fileID: 0}
   overrideTypeCameraHandler: {fileID: 0}
