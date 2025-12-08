@@ -1,9 +1,7 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class SearchBar : MonoBehaviour
 {
-    [SerializeField] private TextField search;
     [SerializeField] private FiltersBar filtersBar;
 
     public bool IsOpen { get; private set; }
@@ -29,4 +27,7 @@ public class SearchBar : MonoBehaviour
 
         IsOpen = false;
     }
+
+    public void UpdateTextFilter(string search)
+        => TelaDeEscolha.ChangeSearch(search);
 }

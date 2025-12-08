@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TelaDeEscolha : Singleton<TelaDeEscolha>
 {
@@ -29,9 +29,6 @@ public class TelaDeEscolha : Singleton<TelaDeEscolha>
                 searchBarHolder.CloseUI();
             else
                 searchBarHolder.OpenUI();
-
-        if (Input.GetKeyDown(KeyCode.Escape) && shaderSummaryHolder.IsOpen)
-            shaderSummaryHolder.CloseUI();
     }
 
     void CriarItem(ShaderInfos shaderInfo)
@@ -66,26 +63,13 @@ public class TelaDeEscolha : Singleton<TelaDeEscolha>
     public static void OpenShaderSummary(ShaderInfos shaderInfo)
         => Instance.shaderSummaryHolder.OpenUI(shaderInfo);
 
-    public static void CloseShaderSummary()
-        => Instance.shaderSummaryHolder.CloseUI();
-
     public static ShaderSummary ShaderSummary => Instance.shaderSummaryHolder;
-
-    public static void SetGridRight(float right)
-        => (Instance.fullGrid as RectTransform).offsetMax = new(-right, (Instance.fullGrid as RectTransform).offsetMax.y);
 
     public static void SetGridTop(float top)
         => (Instance.conteudoHolder as RectTransform).offsetMax = new((Instance.conteudoHolder as RectTransform).offsetMax.x, -top);
 
-    public static Vector2Int GetGridHorizontalPadding()
-        => new(Instance.grid.GetComponent<GridLayoutGroup>().padding.left, Instance.grid.GetComponent<GridLayoutGroup>().padding.right);
-
-    public static void SetGridHorizontalPadding(Vector2Int horizontalPadding)
-    {
-        Instance.grid.GetComponent<GridLayoutGroup>().padding.left = (int)horizontalPadding.x;
-        Instance.grid.GetComponent<GridLayoutGroup>().padding.right = (int)horizontalPadding.y;
-    }
     private TipoInfos typeFilter;
+    private string searchFilter = "";
 
     public static void ChangeFilter(TipoInfos type)
     {
@@ -94,22 +78,20 @@ public class TelaDeEscolha : Singleton<TelaDeEscolha>
         FilterShaders();
     }
 
+    public static void ChangeSearch(string search)
+    {
+        Instance.searchFilter = search;
+
+        FilterShaders();
+    }
+
     public static void FilterShaders()
     {
-        foreach (FilterButton filterButton in FilterButton.Instances)
-            filterButton.ResetPress();
-
-        if (Instance.typeFilter)
-            foreach (ItemDoGrid itemDoGrid in Instance.itensDoGridCriados)
-            {
-                if (itemDoGrid.shaderInfos.Tipo == Instance.typeFilter)
-                    itemDoGrid.Show();
-                else
-                    itemDoGrid.Hide();
-            }
-        else
-            foreach (ItemDoGrid itemDoGrid in Instance.itensDoGridCriados)
+        foreach (ItemDoGrid itemDoGrid in Instance.itensDoGridCriados)
+            if ((!Instance.typeFilter || itemDoGrid.shaderInfos.Tipo == Instance.typeFilter) && Regex.IsMatch(itemDoGrid.shaderInfos.Nome, Instance.searchFilter))
                 itemDoGrid.Show();
+            else
+                itemDoGrid.Hide();
     }
 
     public void HandleBackPress()

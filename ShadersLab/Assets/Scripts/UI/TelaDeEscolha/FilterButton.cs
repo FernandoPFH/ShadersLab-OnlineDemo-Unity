@@ -40,7 +40,12 @@ public class FilterButton : MonoBehaviour
 
     public void HandlePress()
     {
-        if (IsSelected)
+        bool isSelected = IsSelected;
+
+        foreach (FilterButton filterButton in Instances)
+            filterButton.ResetPress();
+
+        if (isSelected)
         {
             TelaDeEscolha.ChangeFilter(null);
             button.targetGraphic.color = defaultButtonColor;
@@ -51,10 +56,10 @@ public class FilterButton : MonoBehaviour
             button.targetGraphic.color = button.colors.disabledColor;
         }
 
-        IsSelected = !IsSelected;
+        IsSelected = !isSelected;
     }
 
-    public void ResetPress()
+    private void ResetPress()
     {
         IsSelected = false;
         button.targetGraphic.color = defaultButtonColor;

@@ -14,12 +14,17 @@ public class ShaderSummary : MonoBehaviour
 
     private Vector2Int itemGridDefaultHorizontalPadding;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && IsOpen)
+            CloseUI();
+    }
+
     public void OpenUI(ShaderInfos shaderInfos)
     {
         RectTransform rectTransform = transform as RectTransform;
 
         rectTransform.anchoredPosition = new(-rectTransform.rect.width, rectTransform.anchoredPosition.y);
-        TelaDeEscolha.SetGridRight(rectTransform.rect.width);
 
         backgroundHolder.sprite = shaderInfos.MainImage;
 
@@ -27,9 +32,6 @@ public class ShaderSummary : MonoBehaviour
 
         typeTextHolder.text = shaderInfos.Tipo.Nome;
         typeIconHolder.sprite = shaderInfos.Tipo.Icone;
-
-        itemGridDefaultHorizontalPadding = TelaDeEscolha.GetGridHorizontalPadding();
-        TelaDeEscolha.SetGridHorizontalPadding(Vector2Int.one * ItemGridSettings.HorizontalPaddingWhenCompact);
 
         IsOpen = true;
     }
@@ -39,9 +41,6 @@ public class ShaderSummary : MonoBehaviour
         RectTransform rectTransform = transform as RectTransform;
 
         rectTransform.anchoredPosition = new(0f, rectTransform.anchoredPosition.y);
-        TelaDeEscolha.SetGridRight(0f);
-
-        TelaDeEscolha.SetGridHorizontalPadding(itemGridDefaultHorizontalPadding);
 
         IsOpen = false;
     }
