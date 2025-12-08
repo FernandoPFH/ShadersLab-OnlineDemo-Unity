@@ -13,9 +13,12 @@ public class TextureUICreator : ShaderEditorUICreator<TextureUIData>
         {typeof(Texture2D) , (texture) => texture as Texture2D},
     };
 
-    public override GameObject GenerateUI(Material material, Shader shader, int propertyIndex)
+    public override GameObject GenerateUIPerProperty(Material material, Shader shader, int propertyIndex)
     {
         Texture texture = material.GetTexture(material.shader.GetPropertyNameId(propertyIndex));
+
+        if (!texture)
+            return new();
 
         Texture2D castedTexture = null;
         foreach (Type type in casters.Keys)
@@ -33,7 +36,7 @@ public class TextureUICreator : ShaderEditorUICreator<TextureUIData>
             return new();
         }
 
-        GameObject ui = base.GenerateUI(material, shader, propertyIndex);
+        GameObject ui = base.GenerateUIPerProperty(material, shader, propertyIndex);
 
         shaderUIDataHolders.Add(new TextureUIData(material, propertyIndex, castedTexture, ui));
 

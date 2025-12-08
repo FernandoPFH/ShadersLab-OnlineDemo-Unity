@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "VectorUICreator", menuName = "ScriptableObjects/UI/ShaderEditorUI/Creators/VectorUICreator")]
 public class VectorUICreator : ShaderEditorUICreator<VectorUIData>
 {
-    public override GameObject GenerateUI(Material material, Shader shader, int propertyIndex)
+    public override GameObject GenerateUIPerProperty(Material material, Shader shader, int propertyIndex)
     {
-        GameObject ui = base.GenerateUI(material, shader, propertyIndex);
+        GameObject ui = base.GenerateUIPerProperty(material, shader, propertyIndex);
 
         shaderUIDataHolders.Add(new VectorUIData(material, propertyIndex, material.GetVector(material.shader.GetPropertyNameId(propertyIndex)), ui));
 

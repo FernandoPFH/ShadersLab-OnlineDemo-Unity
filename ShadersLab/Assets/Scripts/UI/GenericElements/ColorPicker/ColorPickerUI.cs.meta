@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 78b395fe1edb113baacb11972d4954cf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - colorPreview: {instanceID: 0}
+  - hdrLabel: {instanceID: 0}
+  - windowPrefab: {fileID: 8472836252891856549, guid: a04e179203c2863788bb7aa07c2878b4,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

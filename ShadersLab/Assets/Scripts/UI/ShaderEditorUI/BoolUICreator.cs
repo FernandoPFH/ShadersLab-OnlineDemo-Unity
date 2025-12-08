@@ -4,11 +4,11 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "BoolUICreator", menuName = "ScriptableObjects/UI/ShaderEditorUI/Creators/BoolUICreator")]
 public class BoolUICreator : ShaderEditorUICreator<BoolUIData>
 {
-    public override GameObject GenerateUI(Material material, Shader shader, int propertyIndex)
+    public override GameObject GenerateUIPerAttribute(Material material, Shader shader, int propertyIndex, int attributeIndex)
     {
-        GameObject ui = base.GenerateUI(material, shader, propertyIndex);
+        GameObject ui = base.GenerateUIPerAttribute(material, shader, propertyIndex, attributeIndex);
 
-        shaderUIDataHolders.Add(new BoolUIData(material, propertyIndex, material.GetFloat(material.shader.GetPropertyNameId(propertyIndex)) > 0.5, ui));
+        shaderUIDataHolders.Add(new BoolUIData(material, propertyIndex, attributeIndex, material.GetFloat(material.shader.GetPropertyNameId(propertyIndex)) > 0.5, ui));
 
         return ui;
     }
@@ -16,7 +16,7 @@ public class BoolUICreator : ShaderEditorUICreator<BoolUIData>
 
 public class BoolUIData : ShaderUIData<bool>
 {
-    public BoolUIData(Material material, int propertyIndex, bool initialValue, GameObject ui) : base(material, propertyIndex, initialValue, ui)
+    public BoolUIData(Material material, int propertyIndex, int attributeIndex, bool initialValue, GameObject ui) : base(material, propertyIndex, attributeIndex, initialValue, ui)
     {
         Toggle toggleField = ui.GetComponentInChildren<Toggle>();
 

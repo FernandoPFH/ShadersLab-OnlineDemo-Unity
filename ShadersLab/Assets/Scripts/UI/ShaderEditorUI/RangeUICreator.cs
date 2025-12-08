@@ -5,9 +5,9 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "RangeUICreator", menuName = "ScriptableObjects/UI/ShaderEditorUI/Creators/RangeUICreator")]
 public class RangeUICreator : ShaderEditorUICreator<RangeUIData>
 {
-    public override GameObject GenerateUI(Material material, Shader shader, int propertyIndex)
+    public override GameObject GenerateUIPerProperty(Material material, Shader shader, int propertyIndex)
     {
-        GameObject ui = base.GenerateUI(material, shader, propertyIndex);
+        GameObject ui = base.GenerateUIPerProperty(material, shader, propertyIndex);
 
         shaderUIDataHolders.Add(new RangeUIData(material, propertyIndex, material.GetFloat(material.shader.GetPropertyNameId(propertyIndex)), ui));
 

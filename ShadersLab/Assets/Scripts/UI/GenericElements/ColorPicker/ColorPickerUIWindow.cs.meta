@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4121461e27b16a8838a413bd9c6aafda
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - colorPreview: {instanceID: 0}
+  - colorPickerGradientUI: {instanceID: 0}
+  - colorPickerWheelUI: {instanceID: 0}
+  - colorAlphaSlider: {instanceID: 0}
+  - colorAlphaSliderBackground: {instanceID: 0}
+  - colorAlphaInputField: {instanceID: 0}
+  - colorIntensitySlider: {instanceID: 0}
+  - colorIntensityInputField: {instanceID: 0}
+  - colorIntensityHolder: {instanceID: 0}
+  - windowPrefab: {fileID: 8472836252891856549, guid: a04e179203c2863788bb7aa07c2878b4,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

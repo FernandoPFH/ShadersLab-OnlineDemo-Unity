@@ -15,18 +15,57 @@ MonoBehaviour:
   uiCreatorPerType:
     items:
     - Key: Color
-      Value: {fileID: 11400000, guid: 945733b2f12bcf8988174ba6020afbc6, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 945733b2f12bcf8988174ba6020afbc6,
+          type: 2}
+        HasToBlockRest: 0
+    - Key: HDR
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 9dae9a5b63c0d40a19ac0158326819e2,
+          type: 2}
+        HasToBlockRest: 1
     - Key: Float
-      Value: {fileID: 11400000, guid: 68af11f13372172349549b8f3d235b76, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 68af11f13372172349549b8f3d235b76,
+          type: 2}
+        HasToBlockRest: 0
     - Key: Range
-      Value: {fileID: 11400000, guid: 3b329877385a025809a366d8c7efba34, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 3b329877385a025809a366d8c7efba34,
+          type: 2}
+        HasToBlockRest: 0
     - Key: Vector
-      Value: {fileID: 11400000, guid: 5983394bc31df5625acfc24cee2502b9, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 5983394bc31df5625acfc24cee2502b9,
+          type: 2}
+        HasToBlockRest: 0
     - Key: Texture
-      Value: {fileID: 11400000, guid: 78d8a6ab50523bf8fab118a440df4429, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 78d8a6ab50523bf8fab118a440df4429,
+          type: 2}
+        HasToBlockRest: 0
     - Key: Cube
-      Value: {fileID: 11400000, guid: 78d8a6ab50523bf8fab118a440df4429, type: 2}
-    - Key: Toggle
-      Value: {fileID: 11400000, guid: d0de875b344fb4d97a28726161c885b9, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 78d8a6ab50523bf8fab118a440df4429,
+          type: 2}
+        HasToBlockRest: 0
+    - Key: Toggle(.*)
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: d0de875b344fb4d97a28726161c885b9,
+          type: 2}
+        HasToBlockRest: 1
     - Key: MaterialToggle
-      Value: {fileID: 11400000, guid: d0de875b344fb4d97a28726161c885b9, type: 2}
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: d0de875b344fb4d97a28726161c885b9,
+          type: 2}
+        HasToBlockRest: 1
+    - Key: Header(.*)
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: d2e233c6b5e3f647ebc61e811663492e,
+          type: 2}
+        HasToBlockRest: 0
+    - Key: KeywordEnum(.*)
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: ac82761508e30ed28ab199d57ce48b8a,
+          type: 2}
+        HasToBlockRest: 1

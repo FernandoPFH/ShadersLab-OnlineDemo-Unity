@@ -4,9 +4,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FloatUICreator", menuName = "ScriptableObjects/UI/ShaderEditorUI/Creators/FloatUICreator")]
 public class FloatUICreator : ShaderEditorUICreator<FloatUIData>
 {
-    public override GameObject GenerateUI(Material material, Shader shader, int propertyIndex)
+    public override GameObject GenerateUIPerProperty(Material material, Shader shader, int propertyIndex)
     {
-        GameObject ui = base.GenerateUI(material, shader, propertyIndex);
+        GameObject ui = base.GenerateUIPerProperty(material, shader, propertyIndex);
 
         shaderUIDataHolders.Add(new FloatUIData(material, propertyIndex, material.GetFloat(material.shader.GetPropertyNameId(propertyIndex)), ui));
 
