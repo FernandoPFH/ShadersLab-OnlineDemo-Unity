@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.VectorGraphics;
 using TMPro;
+using System.Collections.Generic;
 
 public class ShaderSummary : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ShaderSummary : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleHolder;
     [SerializeField] private TextMeshProUGUI typeTextHolder;
     [SerializeField] private SVGImage typeIconHolder;
+    [SerializeField] private List<GameObject> descriptionParts;
 
     public bool IsOpen;
 
@@ -34,6 +36,8 @@ public class ShaderSummary : MonoBehaviour
         typeIconHolder.sprite = shaderInfos.Tipo.Icone;
 
         IsOpen = true;
+
+        descriptionParts.ForEach(x => x.SetActive(!string.IsNullOrEmpty(shaderInfos.Description)));
     }
 
     public void CloseUI()

@@ -6,11 +6,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(EventTrigger))]
 public class ShaderEditorUI : Singleton<ShaderEditorUI>
 {
     [SerializeField] private Transform scrollViewContentContainer;
-    [SerializeField] private EventTrigger eventTrigger;
     [SerializeField] private GameObject header;
 
     private float openHeight;
@@ -28,11 +26,6 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
         closeHeight = header.GetComponent<LayoutElement>().minHeight + verticalLayoutGroup.padding.top + verticalLayoutGroup.padding.bottom;
 
         rectTransform.sizeDelta = new(rectTransform.sizeDelta.x, closeHeight);
-    }
-
-    void OnValidate()
-    {
-        if (eventTrigger) eventTrigger = GetComponent<EventTrigger>();
     }
 
     private bool CheckForUICreatorAndBlockRest(string shaderInfo, Material material, int propertyIndex)

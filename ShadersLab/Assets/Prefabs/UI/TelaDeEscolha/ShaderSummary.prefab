@@ -739,6 +739,9 @@ MonoBehaviour:
   titleHolder: {fileID: 9009625578255740530}
   typeTextHolder: {fileID: 8755364436894123762}
   typeIconHolder: {fileID: 5740666159889145742}
+  descriptionParts:
+  - {fileID: 1582275086731008886}
+  - {fileID: 3459120515213615159}
   IsOpen: 0
 --- !u!1 &5255361357623079803
 GameObject:

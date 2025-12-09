@@ -52,6 +52,12 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         CurrentShaderInfos.SceneSetupHandler.SetupNewMaterial(CurrentShaderInfos.Material);
 
         ShaderEditorUI.GenerateUI(CurrentShaderInfos.Material);
+
+        ObjectSettingsUI.SteupUI();
+
+        if (!PlaceManager.IsCurrentlyEnabled) PlaceManager.CreatePlace();
+
+        PlaceSettingsUI.SteupUI();
     }
 
     private void ResetScene(AsyncOperation _)
