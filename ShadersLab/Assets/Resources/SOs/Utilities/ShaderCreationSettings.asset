@@ -18,3 +18,5 @@ MonoBehaviour:
   readmeTemplate: {fileID: 4900000, guid: 94bcf59a4d9573573bb0abdd3f7784e5, type: 3}
   shaderTemplate: {fileID: 4900000, guid: 18fb1286711150c6eb39efc88e57c59d, type: 3}
   shaderGraphTemplate: {fileID: 4900000, guid: e6e9e0416e0687b95b2f03ab32c30360, type: 3}
+  testAreaSceneName: AreaDeTeste
+  testAreaObjectTag: TestAreaObject

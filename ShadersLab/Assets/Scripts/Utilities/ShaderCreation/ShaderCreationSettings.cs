@@ -26,4 +26,12 @@ public class ShaderCreationSettings : SelfLoadedScriptableObject<ShaderCreationS
     public static TextAsset ShaderGraphTemplate => Instance.shaderGraphTemplate;
     [SerializeField]
     private TextAsset shaderGraphTemplate;
+
+    public static string TestAreaSceneName => Instance.testAreaSceneName;
+    [SerializeField]
+    private string testAreaSceneName;
+
+    public static string TestAreaObjectTag => Instance.testAreaObjectTag;
+    [SerializeField]
+    private string testAreaObjectTag;
 }

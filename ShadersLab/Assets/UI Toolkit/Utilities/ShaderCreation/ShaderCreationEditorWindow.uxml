@@ -7,6 +7,9 @@
         <ui:VisualElement name="TypeHolder">
             <ui:DropdownField label="Type" name="Type" style="color: rgb(255, 255, 255);" />
         </ui:VisualElement>
+        <ui:VisualElement name="IsFullScreenHolder">
+            <ui:Toggle label="Is Full SCreen Effect?" name="IsFullScreen" style="color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
         <ui:VisualElement name="ButtonsHolder" style="padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
             <ui:Button text="Create Shader" name="Submit" />
         </ui:VisualElement>

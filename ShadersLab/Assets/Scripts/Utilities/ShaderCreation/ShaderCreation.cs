@@ -4,6 +4,9 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.SceneManagement;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public static class ShaderCreation
 {
@@ -18,14 +21,14 @@ public static class ShaderCreation
         wnd.titleContent = new GUIContent("New Shader");
     }
 
-    private static void HandleShaderCreationSubmit(string shaderName, string typeName)
+    private static void HandleShaderCreationSubmit(string shaderName, string typeName, bool isFullscreenEffect)
     {
-        CreateShaderTemplate(shaderName, typeName);
+        CreateShaderTemplate(shaderName, typeName, isFullscreenEffect);
 
         ShaderCreationEditorWindowManager.OnSubmit -= CreateShaderTemplate;
     }
 
-    private static void CreateShaderTemplate(string shaderName, string typeName)
+    private static void CreateShaderTemplate(string shaderName, string typeName, bool isFullscreenEffect)
     {
         shaderName = shaderName.Replace(" ", "");
         string shaderNameWithSpaces = Regex.Replace(shaderName, "([A-Z])", " $1").Trim();
@@ -50,7 +53,7 @@ public static class ShaderCreation
         CreateSprite(ShaderCreationSettings.PlaceholdImage.texture, mainImagePath);
 
         // Create Shader directory and populate it with an shader and material file
-        CreateShaderMaterialFiles(shaderName, shaderNameWithSpaces, shaderRootPath, type);
+        Material materialCreated = CreateShaderMaterialFiles(shaderName, shaderNameWithSpaces, shaderRootPath, type);
 
         // Populate Shader Root directory
         File.WriteAllText(Path.Combine(shaderResourcesRootPath, "README.md"), ShaderCreationSettings.ReadmeTemplate.text.PopulateTemplate(new()
@@ -68,9 +71,11 @@ public static class ShaderCreation
 
         // Update Unity Assets
         AssetDatabase.Refresh();
+
+        OpenTestAreaScene(materialCreated, isFullscreenEffect);
     }
 
-    private static void CreateShaderMaterialFiles(string shaderName, string shaderNameWithSpaces, string shaderRootPath, TipoInfos type)
+    private static Material CreateShaderMaterialFiles(string shaderName, string shaderNameWithSpaces, string shaderRootPath, TipoInfos type)
     {
         string shaderFilePath = Path.Combine(shaderRootPath, shaderName + (type.IsShaderGraph ? ".shadergraph" : $".shader"));
 
@@ -86,6 +91,36 @@ public static class ShaderCreation
         Shader shaderAsset = AssetDatabase.LoadAssetAtPath<Shader>(shaderFilePath);
         Material material = new Material(shaderAsset);
         AssetDatabase.CreateAsset(material, Path.Combine(shaderRootPath, $"{shaderName}.mat"));
+
+        return material;
+    }
+
+    private static void OpenTestAreaScene(Material material, bool isFullscreenEffect)
+    {
+        UnityEngine.SceneManagement.Scene currentScene = EditorSceneManager.GetActiveScene();
+        EditorSceneManager.SaveScene(currentScene);
+
+        if (currentScene.name != ShaderCreationSettings.TestAreaSceneName)
+        {
+            EditorSceneManager.OpenScene($"Assets/Scenes/{ShaderCreationSettings.TestAreaSceneName}.unity");
+        }
+
+        if (!isFullscreenEffect)
+        {
+            currentScene = EditorSceneManager.GetActiveScene();
+
+            foreach (GameObject rootGameObject in currentScene.GetRootGameObjects())
+                if (rootGameObject.tag == ShaderCreationSettings.TestAreaObjectTag)
+                    rootGameObject.GetComponent<MeshRenderer>().material = material;
+
+            EditorSceneManager.SaveScene(currentScene);
+        }
+        else
+        {
+            foreach (ScriptableRendererFeature feature in (GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).rendererDataList[0].rendererFeatures)
+                if (feature is FullScreenPassRendererFeature fullScreenPass)
+                    fullScreenPass.passMaterial = material;
+        }
     }
 
     #endregion
