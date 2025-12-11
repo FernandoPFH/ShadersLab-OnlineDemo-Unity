@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+#if UNITY_EDITOR
 public class ShaderCreationEditorWindowManager : EditorWindow
 {
     [SerializeField]
@@ -42,3 +43,4 @@ public class ShaderCreationEditorWindowManager : EditorWindow
     private void OnDestroy()
         => OnSubmit = null;
 }
+#endif

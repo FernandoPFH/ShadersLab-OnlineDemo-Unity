@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 [CreateAssetMenu(fileName = "SetupPostProcessingHandler", menuName = "ScriptableObjects/Scene Setup/Handler/SetupPostProcessingHandler")]
@@ -9,7 +10,7 @@ public class SetupPostProcessingHandler : SceneSetupHandler
 
     public override void OnSceneStart()
     {
-        foreach (ScriptableRendererFeature feature in universalRendererData.rendererFeatures)
+        foreach (ScriptableRendererFeature feature in (GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).rendererDataList[0].rendererFeatures)
             if (feature is FullScreenPassRendererFeature fullScreenPass)
                 this.fullScreenPass = fullScreenPass;
     }

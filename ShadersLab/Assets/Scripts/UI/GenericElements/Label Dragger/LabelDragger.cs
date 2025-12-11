@@ -31,7 +31,7 @@ public class LabelDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     }
 
     public void OnPointerEnter(PointerEventData eventData)
-        => Cursor.SetCursor(LabelDraggerSettings.DragCursorTexture, LabelDraggerSettings.DragCursorTexture ? LabelDraggerSettings.DragCursorTexture.Size() / 2f : Vector2.zero, CursorMode.Auto);
+        => Cursor.SetCursor(LabelDraggerSettings.DragCursorTexture, LabelDraggerSettings.DragCursorTexture ? new Vector2(LabelDraggerSettings.DragCursorTexture.width, LabelDraggerSettings.DragCursorTexture.height) / 2f : Vector2.zero, CursorMode.Auto);
 
     public void OnPointerExit(PointerEventData eventData)
     {

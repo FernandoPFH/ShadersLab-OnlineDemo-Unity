@@ -37,7 +37,7 @@ public class ColorPickerGradientUI : MonoBehaviour, IPointerClickHandler, IDragH
     }
 
     public void SetSaturationLightness(Vector2 saturationLightness)
-        => selectorKnob.anchoredPosition = saturationLightness * (transform as RectTransform).rect.size.Abs();
+        => selectorKnob.anchoredPosition = saturationLightness * new Vector2(Mathf.Abs((transform as RectTransform).rect.size.x), Mathf.Abs((transform as RectTransform).rect.size.y));
 
     public void SetHue(float hue)
         => grandientPreview.material.SetFloat("_Hue", hue);

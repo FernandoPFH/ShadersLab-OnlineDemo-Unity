@@ -1,15 +1,19 @@
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+
+#if UNITY_EDITOR
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+#endif
 
 public static class ShaderCreation
 {
+#if UNITY_EDITOR
     #region Shader Creation
 
     [MenuItem("Assets/Create/ShaderLab/Create Shader")]
@@ -200,4 +204,5 @@ public static class ShaderCreation
     }
 
     #endregion
+#endif
 }
