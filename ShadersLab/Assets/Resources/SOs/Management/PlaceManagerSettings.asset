@@ -26,3 +26,9 @@ MonoBehaviour:
           type: 3}
         Position: {x: 0, y: 0, z: 0}
         rotation: {x: 0, y: 0, z: 0}
+    - Key: Village
+      Value:
+        Prefab: {fileID: 2127392709030504445, guid: ec09b065967fe6582af3b5263474a6e0,
+          type: 3}
+        Position: {x: 28.81, y: -14.4, z: 23.4}
+        rotation: {x: 0, y: 78.62998, z: 0}
