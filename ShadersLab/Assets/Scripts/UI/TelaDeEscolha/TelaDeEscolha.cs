@@ -94,6 +94,9 @@ public class TelaDeEscolha : Singleton<TelaDeEscolha>
                 itemDoGrid.Hide();
     }
 
+    public void OpenShaderDisplayScene()
+        => SceneTransitionManager.OpenShaderDisplayScene(shaderSummaryHolder.CurrentShaderInfos);
+
     public void HandleBackPress()
     {
         searchBarHolder.CloseUI();

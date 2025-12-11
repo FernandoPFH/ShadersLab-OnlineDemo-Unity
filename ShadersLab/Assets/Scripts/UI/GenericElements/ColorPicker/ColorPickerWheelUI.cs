@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -48,5 +47,5 @@ public class ColorPickerWheelUI : MonoBehaviour, IPointerClickHandler, IDragHand
     }
 
     public void SetHue(float hue)
-        => selectorKnob.anchoredPosition = new Vector2(Mathf.Cos(hue * Mathf.Deg2Rad), Mathf.Sin(hue * Mathf.Deg2Rad)) * colorKnobDistance;
+        => selectorKnob.anchoredPosition = new Vector2(Mathf.Cos(hue * 360f * Mathf.Deg2Rad), Mathf.Sin(hue * 360f * Mathf.Deg2Rad)) * colorKnobDistance;
 }

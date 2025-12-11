@@ -1887,6 +1887,41 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7416149979555311833}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenShaderDisplayScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TelaDeEscolha, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7869506066089811499, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8026893062866611093, guid: e55e3bbe757b7b795ab890098627b9d3,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1913,6 +1948,31 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8026893062866611093, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095791843802455548, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095791843802455548, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095791843802455548, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095791843802455548, guid: e55e3bbe757b7b795ab890098627b9d3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8095791843802455548, guid: e55e3bbe757b7b795ab890098627b9d3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0

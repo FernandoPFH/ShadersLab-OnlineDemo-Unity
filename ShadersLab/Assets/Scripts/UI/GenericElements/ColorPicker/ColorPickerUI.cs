@@ -42,6 +42,7 @@ public class ColorPickerUI : MonoBehaviour
     private void UpdateColor(ColorData colorData)
     {
         colorPreview.color = colorData.ColorWithoutHDR;
+        color = colorData.FullColor;
         onValueChanged.Invoke(colorData);
     }
 

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms;
+using Unity.VisualScripting;
 
 public class ColorPickerGradientUI : MonoBehaviour, IPointerClickHandler, IDragHandler
 {
@@ -21,23 +23,21 @@ public class ColorPickerGradientUI : MonoBehaviour, IPointerClickHandler, IDragH
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(transform as RectTransform, eventData.position, eventData.pressEventCamera, out Vector2 localPoint);
 
-        float clampedX = localPoint.x < (-size.x / 2) ? (-size.x / 2) : localPoint.x;
-        clampedX = localPoint.x > (size.x / 2) ? (size.x / 2) : clampedX;
+        float clampedX = localPoint.x < 0f ? 0f : localPoint.x;
+        clampedX = clampedX > size.x ? size.x : clampedX;
 
-        float clampedY = localPoint.y < (-size.y / 2) ? (-size.y / 2) : localPoint.y;
-        clampedY = localPoint.y > (size.y / 2) ? (size.y / 2) : clampedY;
+        float clampedY = localPoint.y < 0f ? 0f : localPoint.y;
+        clampedY = clampedY > size.y ? size.y : clampedY;
 
         localPoint = new(clampedX, clampedY);
 
-        Vector2 SL = Vector2.one * 0.5f - (localPoint / -size);
+        selectorKnob.anchoredPosition = localPoint;
 
-        selectorKnob.anchoredPosition = localPoint - (size / 2f);
-
-        onValueChanged.Invoke(SL);
+        onValueChanged.Invoke(localPoint / size);
     }
 
     public void SetSaturationLightness(Vector2 saturationLightness)
-        => selectorKnob.anchoredPosition = (saturationLightness - Vector2.one) * (transform as RectTransform).rect.size * -1f;
+        => selectorKnob.anchoredPosition = saturationLightness * (transform as RectTransform).rect.size.Abs();
 
     public void SetHue(float hue)
         => grandientPreview.material.SetFloat("_Hue", hue);

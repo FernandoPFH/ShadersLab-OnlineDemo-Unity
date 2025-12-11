@@ -16,7 +16,11 @@ MonoBehaviour:
   Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
   MainImage: {fileID: 21300000, guid: 31121f48384b9eca892db7e545757fdb, type: 3}
   Material: {fileID: 2100000, guid: 4a162b30b4b21bbaf81575659378204e, type: 2}
+  Description: 
   TemObjetoInicial: 0
   NomeObjetoInicial: 
+  TemLocalInicial: 1
+  NomeLocalInicial: Test Site
+  texturesToShow: []
   overrideTypeSceneSetupHandler: {fileID: 0}
   overrideTypeCameraHandler: {fileID: 0}

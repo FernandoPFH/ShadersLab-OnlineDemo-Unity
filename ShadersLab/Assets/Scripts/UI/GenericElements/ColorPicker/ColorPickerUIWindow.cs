@@ -179,6 +179,8 @@ public class ColorPickerUIWindow : MonoBehaviour, IDragHandler
         transform.SetParent(FindFirstObjectByType<Canvas>().transform);
         (transform as RectTransform).anchoredPosition = screenPosition;
 
+        Canvas.ForceUpdateCanvases();
+
         SetColor(color);
 
         ToggleHDR(isHDR);

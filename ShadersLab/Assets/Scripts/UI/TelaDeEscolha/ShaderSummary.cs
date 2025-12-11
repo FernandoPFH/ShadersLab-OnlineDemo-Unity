@@ -13,6 +13,7 @@ public class ShaderSummary : MonoBehaviour
     [SerializeField] private List<GameObject> descriptionParts;
 
     public bool IsOpen;
+    public ShaderInfos CurrentShaderInfos;
 
     private Vector2Int itemGridDefaultHorizontalPadding;
 
@@ -38,6 +39,8 @@ public class ShaderSummary : MonoBehaviour
         IsOpen = true;
 
         descriptionParts.ForEach(x => x.SetActive(!string.IsNullOrEmpty(shaderInfos.Description)));
+
+        CurrentShaderInfos = shaderInfos;
     }
 
     public void CloseUI()
