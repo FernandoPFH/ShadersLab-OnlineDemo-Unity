@@ -48,8 +48,8 @@ public class FreeCameraHandler : CameraHandler
 
         if (mouseIsBeingHold)
         {
-            camera.transform.RotateAround(camera.transform.position, Vector3.up, Input.mousePositionDelta.x * rotationSpeedMultiplier);
-            camera.transform.RotateAround(camera.transform.position, camera.transform.right, -Input.mousePositionDelta.y * rotationSpeedMultiplier);
+            camera.transform.RotateAround(camera.transform.position, Vector3.up, Input.mousePositionDelta.x * rotationSpeedMultiplier * (1920f / Screen.width));
+            camera.transform.RotateAround(camera.transform.position, camera.transform.right, -Input.mousePositionDelta.y * rotationSpeedMultiplier * (1080f / Screen.height));
         }
 
         camera.transform.position += camera.transform.forward * (GetKeyDownAsInt(forwardMovementKey) - GetKeyDownAsInt(backMovementKey)) * movementSpeedMultiplier + camera.transform.right * (GetKeyDownAsInt(rightMovementKey) - GetKeyDownAsInt(leftMovementKey)) * movementSpeedMultiplier;

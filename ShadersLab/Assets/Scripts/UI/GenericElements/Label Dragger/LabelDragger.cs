@@ -13,7 +13,7 @@ public class LabelDragger : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (float.TryParse(inputField.text, out float parsedText))
         {
-            parsedText += eventData.delta.x * LabelDraggerSettings.DragMultiplier;
+            parsedText += eventData.delta.x * LabelDraggerSettings.DragMultiplier * (1920f / Screen.width);
 
             inputField.text = parsedText.ToString();
 

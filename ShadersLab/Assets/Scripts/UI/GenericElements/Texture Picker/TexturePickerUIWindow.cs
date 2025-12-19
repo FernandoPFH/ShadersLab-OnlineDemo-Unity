@@ -17,7 +17,7 @@ public class TexturePickerUIWindow : MonoBehaviour, IDragHandler
     public void SetupUI(Vector2 screenPosition, ShaderInfos shaderInfos)
     {
         transform.SetParent(FindFirstObjectByType<Canvas>().transform);
-        (transform as RectTransform).anchoredPosition = screenPosition;
+        (transform as RectTransform).anchoredPosition = screenPosition * (new Vector2(1920f, 1080f) / new Vector2(Screen.width, Screen.height));
 
         foreach (Transform child in contentHolder)
             Destroy(child.gameObject);
@@ -38,6 +38,8 @@ public class TexturePickerUIWindow : MonoBehaviour, IDragHandler
         }
 
         gameObject.SetActive(true);
+
+        (transform as RectTransform).localScale *= new Vector2(Screen.width, Screen.height) / new Vector2(1920f, 1080f);
     }
 
     public void ToggleTextureVisibility()
@@ -64,7 +66,7 @@ public class TexturePickerUIWindow : MonoBehaviour, IDragHandler
         => onValueChanged.Invoke(texture2D);
 
     public void OnDrag(PointerEventData eventData)
-        => (transform as RectTransform).anchoredPosition += eventData.delta;
+        => (transform as RectTransform).anchoredPosition += eventData.delta * (new Vector2(1920f, 1080f) / new Vector2(Screen.width, Screen.height));
 
     public void CloseWindow()
     {

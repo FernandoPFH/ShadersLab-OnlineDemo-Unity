@@ -47,8 +47,8 @@ public class HoverCameraHandler : CameraHandler
 
         if (mouseIsBeingHold)
         {
-            camera.transform.RotateAround(Vector3.zero, Vector3.up, Input.mousePositionDelta.x * mouseDragMultiplier);
-            camera.transform.RotateAround(Vector3.zero, camera.transform.right, -Input.mousePositionDelta.y * mouseDragMultiplier);
+            camera.transform.RotateAround(Vector3.zero, Vector3.up, Input.mousePositionDelta.x * mouseDragMultiplier * (1920f / Screen.width));
+            camera.transform.RotateAround(Vector3.zero, camera.transform.right, -Input.mousePositionDelta.y * mouseDragMultiplier * (1080f / Screen.height));
         }
 
         if (Input.mouseScrollDelta.y != 0)

@@ -71,6 +71,8 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
         TelaDeEscolha.Instance.transform.parent.gameObject.SetActive(true);
         AnimationBackgroundObjects.Instance.gameObject.SetActive(true);
 
+        if (PlaceManager.IsCurrentlyEnabled) PlaceManager.TryDestroyPlace();
+
         ShaderEditorUI.ClearUI();
     }
 
