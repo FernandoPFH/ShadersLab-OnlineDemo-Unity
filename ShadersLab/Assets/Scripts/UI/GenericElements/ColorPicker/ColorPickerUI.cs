@@ -23,10 +23,10 @@ public class ColorPickerUI : MonoBehaviour
         colorPreview.color = baseLinearColor;
     }
 
-    public void HideHDRLabel()
+    public void ToggleHDRLabel(bool isEnabled)
     {
-        isHDR = false;
-        hdrLabel.SetActive(false);
+        isHDR = isEnabled;
+        hdrLabel.SetActive(isEnabled);
     }
 
     public void HandlePress()

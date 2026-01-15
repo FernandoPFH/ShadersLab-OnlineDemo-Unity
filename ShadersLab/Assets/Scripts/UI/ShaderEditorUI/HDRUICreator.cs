@@ -20,6 +20,7 @@ public class HDRUIData : ShaderUIData<Color>
         ColorPickerUI colorPickerUI = ui.GetComponentInChildren<ColorPickerUI>();
 
         colorPickerUI.SetColor(initialValue);
+        colorPickerUI.ToggleHDRLabel(true);
 
         colorPickerUI.onValueChanged.AddListener((colorData) => material.SetColor(nameID, colorData.FullColor));
     }
