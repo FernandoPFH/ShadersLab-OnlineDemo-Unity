@@ -20,5 +20,5 @@ class SelfLoaderScriptableObject
 public class SelfLoadedScriptableObject : MonoBehaviour
 {
     void Awake()
-        => Resources.LoadAll<ScriptableObject>("");
+        => Resources.LoadAll("");
 }

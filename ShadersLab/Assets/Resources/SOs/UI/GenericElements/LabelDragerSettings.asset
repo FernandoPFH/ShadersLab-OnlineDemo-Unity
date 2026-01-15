@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LabelDragerSettings
   m_EditorClassIdentifier: 
   dragMultiplier: 0.01
-  dragCursorTexture: {fileID: 2800000, guid: 27163f3cda5b9431d928f2b33eeb5cf1, type: 3}
+  dragCursorTexture: {fileID: 2800000, guid: 3a255ab91abd78db6bf70156946a5ca9, type: 3}
