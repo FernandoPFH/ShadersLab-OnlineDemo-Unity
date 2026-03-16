@@ -12,6 +12,8 @@ public class PixelizerShaderInfos : ShaderInfos
         (SceneSetupHandler as SetupPixelizerHandler).GenerateUI();
 
         base.GenerateShaderUI();
+
+        (SceneSetupHandler as SetupPixelizerHandler).GenerateStencilUI(StencilMaterial);
     }
 
     public override void OnSceneStart()

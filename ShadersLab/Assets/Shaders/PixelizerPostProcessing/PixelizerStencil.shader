@@ -8,10 +8,15 @@ Shader "Unlit/PixelizerStencil"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { 
+	    "RenderType"="Opaque"
+	}
 
         Pass
         {
+	    ColorMask 0
+	    ZWrite Off
+
 	    Stencil
 	    {
 		Ref [_StencilID]
@@ -23,8 +28,6 @@ Shader "Unlit/PixelizerStencil"
 	    Tags {
 	        "LightMode"="UniversalForward" 
 	    }
-	    Blend Zero One
-	    Cull Front
 
             CGPROGRAM
             #pragma vertex vert
@@ -51,25 +54,15 @@ Shader "Unlit/PixelizerStencil"
                 return o;
             }
 
-            fixed4 frag (v2f i, bool isFrontFace : SV_IsFrontFace) : SV_Target
+            fixed3 frag (v2f i, bool isFrontFace : SV_IsFrontFace) : SV_Target
             {
-                return fixed4(0,0,0,0);
+                return 0;
             }
             ENDCG
         }
 
         Pass
         {
-	    Stencil
-	    {
-		Ref [_StencilID]
-		Comp Always
-		Pass Replace
-		Fail Keep
-	    }
-
-	    Cull Back
-
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag

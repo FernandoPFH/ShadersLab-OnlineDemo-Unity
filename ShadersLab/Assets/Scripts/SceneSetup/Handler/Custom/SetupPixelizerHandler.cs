@@ -59,4 +59,10 @@ public class SetupPixelizerHandler : SetupPostProcessingHandler
             fullScreenPass.SetActive(!isToggled);
         }, false);
     }
+
+    public void GenerateStencilUI(Material material)
+    {
+        ShaderEditorUI.GenerateUI("Stencil Settings:", "Header", null, "");
+        ShaderEditorUI.GenerateUI(material);
+    }
 }

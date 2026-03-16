@@ -29,6 +29,11 @@ MonoBehaviour:
         ShaderEditorUICreatorBase: {fileID: 11400000, guid: 68af11f13372172349549b8f3d235b76,
           type: 2}
         HasToBlockRest: 0
+    - Key: IntRange
+      Value:
+        ShaderEditorUICreatorBase: {fileID: 11400000, guid: 2b18bbe96f2a90f18995ba3b5ee6f2ba,
+          type: 2}
+        HasToBlockRest: 1
     - Key: Range
       Value:
         ShaderEditorUICreatorBase: {fileID: 11400000, guid: 3b329877385a025809a366d8c7efba34,
