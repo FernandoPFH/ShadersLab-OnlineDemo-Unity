@@ -46,12 +46,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
 
     private void SetupScene(AsyncOperation _)
     {
-        CurrentShaderInfos.SceneSetupHandler.OnSceneStart();
-        CurrentShaderInfos.CameraHandler.OnSceneStart();
-
-        CurrentShaderInfos.SceneSetupHandler.SetupNewMaterial(CurrentShaderInfos.Material);
-
-        ShaderEditorUI.GenerateUI(CurrentShaderInfos.Material);
+        CurrentShaderInfos.OnSceneStart();
 
         ObjectSettingsUI.SteupUI();
 
@@ -62,8 +57,7 @@ public class SceneTransitionManager : Singleton<SceneTransitionManager>
 
     private void ResetScene(AsyncOperation _)
     {
-        CurrentShaderInfos.SceneSetupHandler.OnSceneExit();
-        CurrentShaderInfos.CameraHandler.OnSceneExit();
+        CurrentShaderInfos.OnSceneExit();
 
         CurrentShaderInfos = null;
 

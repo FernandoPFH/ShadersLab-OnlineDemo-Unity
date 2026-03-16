@@ -28,6 +28,7 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
         rectTransform.sizeDelta = new(rectTransform.sizeDelta.x, closeHeight);
     }
 
+
     private bool CheckForUICreatorAndBlockRest(string shaderInfo, Material material, int propertyIndex)
     {
         foreach (string pattern in ShaderEditorUISettings.UICreatorPerType.Keys)
@@ -49,6 +50,20 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
             if (Regex.IsMatch(shaderInfo, pattern))
             {
                 ShaderEditorUISettings.UICreatorPerType[pattern].ShaderEditorUICreatorBase.GenerateUIPerAttribute(material, material.shader, propertyIndex, attributeIndex).transform.SetParent(Instance.scrollViewContentContainer, false);
+                return ShaderEditorUISettings.UICreatorPerType[pattern].HasToBlockRest;
+            }
+        }
+
+        return false;
+    }
+
+    private bool CheckForUICreatorAndBlockRest<T>(string shaderInfo, string label, Action<T> onChange, T defaultValue)
+    {
+        foreach (string pattern in ShaderEditorUISettings.UICreatorPerType.Keys)
+        {
+            if (Regex.IsMatch(shaderInfo, pattern))
+            {
+                ShaderEditorUISettings.UICreatorPerType[pattern].ShaderEditorUICreatorBase.GenerateUIPerProperty(label, onChange, defaultValue).transform.SetParent(Instance.scrollViewContentContainer, false);
                 return ShaderEditorUISettings.UICreatorPerType[pattern].HasToBlockRest;
             }
         }
@@ -105,6 +120,10 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
             Instance.CheckForUICreatorAndBlockRest(material.shader.GetPropertyType(i).ToString(), material, i);
         }
     }
+
+    public static void GenerateUI<T>(string label, string type, Action<T> onChange, T defaultValue)
+        => Instance.CheckForUICreatorAndBlockRest(type, label, onChange, defaultValue);
+
 
     public static void ClearUI()
     {

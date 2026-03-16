@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,8 +12,21 @@ public abstract class ShaderEditorUICreatorBase : ScriptableObject
     public virtual GameObject GenerateUIPerProperty(Material material, Shader shader, int propertyIndex)
         => GenerateUI(material, shader, propertyIndex);
 
+    public virtual GameObject GenerateUIPerProperty<T>(string label, Action<T> onChange, T defaultValue)
+        => GenerateUI(label, onChange, defaultValue);
+
     public virtual GameObject GenerateUIPerAttribute(Material material, Shader shader, int propertyIndex, int attributeIndex)
         => GenerateUI(material, shader, propertyIndex);
+
+
+
+    private GameObject GenerateUI<T>(string label, Action<T> onChange, T defaultValue)
+    {
+        GameObject ui = Instantiate(UIprefab);
+        ui.GetComponentInChildren<TextMeshProUGUI>().text = $"{label}:";
+
+        return ui;
+    }
 
     private GameObject GenerateUI(Material material, Shader shader, int propertyIndex)
     {
@@ -84,4 +98,18 @@ public abstract class ShaderUIData<T> : ShaderUIDataBase
 
         UI = ui;
     }
+
+    public ShaderUIData(T initialValue, GameObject ui)
+    {
+        // EventTrigger.Entry entryPress = new EventTrigger.Entry();
+        // entryPress.eventID = EventTriggerType.PointerClick;
+        // entryPress.callback.AddListener((eventData) => { if (eventData is PointerEventData pointerEventData && pointerEventData.button is PointerEventData.InputButton.Middle) ResetValue(); });
+        // ui.GetComponent<EventTrigger>().triggers.Add(entryPress);
+
+        defaultValue = initialValue;
+        lastValue = initialValue;
+
+        UI = ui;
+    }
+
 }

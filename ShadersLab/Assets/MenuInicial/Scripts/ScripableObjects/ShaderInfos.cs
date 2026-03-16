@@ -29,4 +29,25 @@ public class ShaderInfos : SelfLoadedScriptableObject<ShaderInfos>
 
     public CameraHandler CameraHandler => overrideTypeCameraHandler ? overrideTypeCameraHandler : Tipo.cameraHandler;
     [SerializeField] private CameraHandler overrideTypeCameraHandler;
+
+    protected virtual void GenerateShaderUI()
+    {
+        ShaderEditorUI.GenerateUI(Material);
+    }
+
+    public virtual void OnSceneStart()
+    {
+        SceneSetupHandler.OnSceneStart();
+        CameraHandler.OnSceneStart();
+
+        SceneSetupHandler.SetupNewMaterial(Material);
+
+        GenerateShaderUI();
+    }
+
+    public virtual void OnSceneExit()
+    {
+        SceneSetupHandler.OnSceneExit();
+        CameraHandler.OnSceneExit();
+    }
 }

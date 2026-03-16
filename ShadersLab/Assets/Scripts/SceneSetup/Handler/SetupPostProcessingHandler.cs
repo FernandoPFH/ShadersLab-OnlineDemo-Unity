@@ -6,13 +6,18 @@ using UnityEngine.Rendering.Universal;
 public class SetupPostProcessingHandler : SceneSetupHandler
 {
     [SerializeField] private UniversalRendererData universalRendererData;
-    private FullScreenPassRendererFeature fullScreenPass;
+    protected FullScreenPassRendererFeature fullScreenPass;
+
+    protected virtual void ProcessRendererFeature(ScriptableRendererFeature feature)
+    {
+        if (feature is FullScreenPassRendererFeature fullScreenPass)
+            this.fullScreenPass = fullScreenPass;
+    }
 
     public override void OnSceneStart()
     {
         foreach (ScriptableRendererFeature feature in (GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset).rendererDataList[0].rendererFeatures)
-            if (feature is FullScreenPassRendererFeature fullScreenPass)
-                this.fullScreenPass = fullScreenPass;
+            ProcessRendererFeature(feature);
     }
 
     public override void OnSceneExit()
