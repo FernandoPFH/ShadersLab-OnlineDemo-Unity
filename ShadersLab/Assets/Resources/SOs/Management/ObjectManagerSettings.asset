@@ -32,3 +32,6 @@ MonoBehaviour:
     - Key: Subdivided Quad
       Value: {fileID: 3834723169128499798, guid: 7c889b6f3b0e3b23eb9fa5f71803457b,
         type: 3}
+    - Key: Terrain
+      Value: {fileID: 3834723169128499798, guid: ae2f0ada965fcfd0285dd68472f2323f,
+        type: 3}
