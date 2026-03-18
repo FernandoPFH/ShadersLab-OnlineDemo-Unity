@@ -15,17 +15,23 @@ MonoBehaviour:
   possibleObjects:
     items:
     - Key: Capsule
-      Value: {fileID: 3333573594738143360, guid: 5150cb14f0fbe72d58e1f89c354b5370,
+      Value: {fileID: 967920680834016491, guid: 5d01fc1301daac00695bd1652ec4b76a,
         type: 3}
     - Key: Cube
-      Value: {fileID: 6864296069779919977, guid: 6ab5fbab9df7e1b138d18efd71177d67,
+      Value: {fileID: 5492108134225985671, guid: da9258858128cffdcb87620098ba7155,
         type: 3}
     - Key: Cylinder
-      Value: {fileID: 290700426555521890, guid: c69e1bf03ce2b043382aeb0e5bfdf5f2,
+      Value: {fileID: 696021992750004868, guid: 675de2fab331ea82dbf2a9d393144d90,
         type: 3}
     - Key: Plane
-      Value: {fileID: 7432958426737765474, guid: 67d91b96743a3ec5284d97da81c6e382,
+      Value: {fileID: 3834723169128499798, guid: 2a994458087bfc80892f072b02236207,
         type: 3}
     - Key: Sphere
-      Value: {fileID: 6704518331323252197, guid: 3b77b85fd1997006fa36dadca23ad21b,
+      Value: {fileID: 5920463625165925919, guid: 044cc57d5fc6ed4078f774adab4486ec,
+        type: 3}
+    - Key: Subdivided Quad
+      Value: {fileID: 3834723169128499798, guid: 7c889b6f3b0e3b23eb9fa5f71803457b,
+        type: 3}
+    - Key: Terrain
+      Value: {fileID: 3834723169128499798, guid: ae2f0ada965fcfd0285dd68472f2323f,
         type: 3}

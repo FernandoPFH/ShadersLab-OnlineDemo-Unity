@@ -71,6 +71,7 @@ public static class ShaderCreation
         asset.Nome = shaderNameWithSpaces;
         asset.Tipo = type;
         asset.MainImage = AssetDatabase.LoadAssetAtPath<Sprite>(mainImagePath);
+        asset.Material = materialCreated;
         AssetDatabase.CreateAsset(asset, Path.Combine(shaderResourcesRootPath, $"{shaderName}.asset"));
 
         // Update Unity Assets
