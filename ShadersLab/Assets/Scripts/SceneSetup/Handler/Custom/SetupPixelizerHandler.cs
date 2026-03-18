@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Experimental.Rendering.Universal;
+
 
 [CreateAssetMenu(fileName = "SetupPixelizerHandler", menuName = "ScriptableObjects/Scene Setup/Handler/Custom/SetupPixelizerHandler")]
 public class SetupPixelizerHandler : SetupPostProcessingHandler
@@ -53,12 +53,7 @@ public class SetupPixelizerHandler : SetupPostProcessingHandler
     }
 
     public void GenerateUI()
-    {
-        ShaderEditorUI.GenerateUI("Per Object?", "Toggle", (bool isToggled) =>
-        {
-            fullScreenPass.SetActive(!isToggled);
-        }, false);
-    }
+        => ShaderEditorUI.GenerateUI("Per Object?", "Toggle", (bool isToggled) => fullScreenPass.SetActive(!isToggled), false);
 
     public void GenerateStencilUI(Material material)
     {
