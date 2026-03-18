@@ -43,7 +43,7 @@ Material:
     - _NumberLines: 60
     - _NumberLines_1: 1
     - _SecondStripSize: 0.0005
-    - _t: 0.015
+    - _t: -0.01
     - _time: -0.01
     m_Colors:
     - _FirstStripColor: {r: 0.3252047, g: 0.7535154, b: 0.7924528, a: 1}
