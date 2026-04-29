@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 702b40c5b4ef7484cab5199ca9658242, type: 3}
+  m_Name: LiquidPhysicsDriven
+  m_EditorClassIdentifier: Assembly-CSharp::ShaderInfos
+  Nome: Liquid Physics Driven
+  Tipo: {fileID: 11400000, guid: 2be307342a86fbe4ca953aac945de61d, type: 2}
+  MainImage: {fileID: 21300000, guid: 4f22aa88017e59936be4bb11be7eee49, type: 3}
+  Material: {fileID: 2100000, guid: 9e2244e3bbc82becea03a5363c899d88, type: 2}
+  Description: 
+  TemObjetoInicial: 0
+  NomeObjetoInicial: 
+  TemLocalInicial: 0
+  NomeLocalInicial: 
+  texturesToShow: []
+  overrideTypeSceneSetupHandler: {fileID: 11400000, guid: aedc7863cdb02eaa2b962d7c16d75235,
+    type: 2}
+  overrideTypeCameraHandler: {fileID: 11400000, guid: 0d403394c7cb76cc78bd2864ee743977,
+    type: 2}
