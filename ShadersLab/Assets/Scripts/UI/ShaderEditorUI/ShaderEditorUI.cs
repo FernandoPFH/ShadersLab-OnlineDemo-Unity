@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
@@ -93,6 +93,10 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
         {
             bool blockRest = false;
             string[] attributes = material.shader.GetPropertyAttributes(i);
+
+            if (GetActiveFlags(material.shader.GetPropertyFlags(i)).Contains("HideInInspector"))
+                continue;
+
             foreach (string attribute in attributes)
             {
                 if (Instance.CheckForUICreatorAndBlockRest(attribute, material, i, Array.IndexOf(attributes, attribute)))

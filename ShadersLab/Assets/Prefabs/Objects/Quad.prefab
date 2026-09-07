@@ -31,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 3010747719561345051, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3010747719561345051, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
@@ -41,7 +41,7 @@ PrefabInstance:
     - target: {fileID: 3010747719561345051, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 3010747719561345051, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
@@ -56,7 +56,7 @@ PrefabInstance:
     - target: {fileID: 3010747719561345051, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 3010747719561345051, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
@@ -66,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 6864296069779919977, guid: ce6087195f4c2d2bda81a99f39157027,
         type: 3}
       propertyPath: m_Name
-      value: Quad 1
+      value: Quad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
