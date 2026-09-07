@@ -39,7 +39,7 @@ public class TexturePickerUIWindow : MonoBehaviour, IDragHandler
 
         gameObject.SetActive(true);
 
-        (transform as RectTransform).localScale *= new Vector2(Screen.width, Screen.height) / new Vector2(1920f, 1080f);
+        (transform as RectTransform).localScale = Vector2.one;
     }
 
     public void ToggleTextureVisibility()

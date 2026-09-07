@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class ColorPickerUIWindow : MonoBehaviour, IDragHandler
@@ -21,7 +22,12 @@ public class ColorPickerUIWindow : MonoBehaviour, IDragHandler
     public Color ColorWithoutHDR => FromHLSAToRGB(colorHSLAI);
     public UnityEvent<ColorData> onValueChanged = new();
 
+    private Vector2 inicialUIScale;
+
     private HSLAI colorHSLAI;
+
+    private void Awake()
+        => inicialUIScale = (transform as RectTransform).localScale;
 
     public void SetColor(Color color)
     {
@@ -187,7 +193,7 @@ public class ColorPickerUIWindow : MonoBehaviour, IDragHandler
 
         gameObject.SetActive(true);
 
-        (transform as RectTransform).localScale *= new Vector2(Screen.width, Screen.height) / new Vector2(1920f, 1080f);
+        (transform as RectTransform).localScale = Vector2.one;
     }
 
     private void ToggleHDR(bool isHDR)
