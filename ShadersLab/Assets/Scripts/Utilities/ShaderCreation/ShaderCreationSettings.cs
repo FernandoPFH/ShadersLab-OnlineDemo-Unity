@@ -5,7 +5,7 @@ public class ShaderCreationSettings : SelfLoadedScriptableObject<ShaderCreationS
 {
     public static string ShadersFolderPath => Instance.shadersFolderPath;
     [SerializeField]
-    private string shadersFolderPath = "Assets/Shaders";
+    private string shadersFolderPath = "Assets/FernandoPFH_ShadersPack/Shaders";
     public static string ShadersResourcesFolderPath => Instance.shadersResourcesFolderPath;
     [SerializeField]
     private string shadersResourcesFolderPath = "Assets/Resources/Shaders";

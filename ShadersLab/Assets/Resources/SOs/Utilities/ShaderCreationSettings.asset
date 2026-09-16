@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392600d6b11ce9fb0aee57ef0d59c32f, type: 3}
   m_Name: ShaderCreationSettings
   m_EditorClassIdentifier: 
-  shadersFolderPath: Assets/Shaders
+  shadersFolderPath: Assets/FernandoPFH_ShadersPack/Shaders
   shadersResourcesFolderPath: Assets/Resources/Shaders
   placeholdImage: {fileID: 21300000, guid: ab5248cb52e5b6023bc03a0b742fbc31, type: 3}
   readmeTemplate: {fileID: 4900000, guid: 94bcf59a4d9573573bb0abdd3f7784e5, type: 3}
