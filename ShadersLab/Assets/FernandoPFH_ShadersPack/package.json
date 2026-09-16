@@ -1,0 +1,12 @@
+{
+  "name": "com.fernandopfh.shaderspack",
+  "version": "1.0.0",
+  "displayName": "FernandoPFH - Shaders Pack",
+  "description": "Shaders pack from FernandoPFH",
+  "documentationUrl": "https://github.com/angrysharkstudio/unity-ai-npc-debugging#readme",
+  "unity": "2020.3",
+  "author": {
+    "name": "FernandoPFH",
+    "url": "https://github.com/FernandoPFH/FernandoPFH"
+  }
+}
