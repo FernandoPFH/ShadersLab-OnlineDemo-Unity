@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "HoverCameraHandler", menuName = "ScriptableObjects/Scene Setup/Camera/HoverCameraHandler")]
 public class HoverCameraHandler : CameraHandler
 {

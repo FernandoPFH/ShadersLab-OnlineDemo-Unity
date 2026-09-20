@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class ObjectManager : Singleton<ObjectManager>
 {
     public static bool IsCurrentlyEnabled => CurrentObject;

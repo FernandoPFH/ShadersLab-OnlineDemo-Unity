@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "PlaceManagerSettings", menuName = "ScriptableObjects/Management/PlaceManagerSettings")]
 public class PlaceManagerSettings : SelfLoadedScriptableObject<PlaceManagerSettings>
 {

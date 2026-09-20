@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "FreeCameraHandler", menuName = "ScriptableObjects/Scene Setup/Camera/FreeCameraHandler")]
 public class FreeCameraHandler : CameraHandler
 {

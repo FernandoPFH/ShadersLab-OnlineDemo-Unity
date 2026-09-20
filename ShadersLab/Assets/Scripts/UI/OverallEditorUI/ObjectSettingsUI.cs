@@ -3,6 +3,8 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class ObjectSettingsUI : Singleton<ObjectSettingsUI>
 {
     [SerializeField] private TMP_Dropdown dropdown;

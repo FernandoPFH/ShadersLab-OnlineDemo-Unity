@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "ColorUICreator", menuName = "ScriptableObjects/UI/ShaderEditorUI/Creators/ColorUICreator")]
 public class ColorUICreator : ShaderEditorUICreator<ColorUIData>
 {
@@ -22,7 +24,7 @@ public class ColorUIData : ShaderUIData<Color>
         colorPickerUI.SetColor(initialValue);
         colorPickerUI.ToggleHDRLabel(false);
 
-        colorPickerUI.onValueChanged.AddListener((colorData) => material.SetColor(nameID, colorData.FullColor));
+        colorPickerUI.onValueChanged.AddListener((color) => material.SetColor(nameID, color));
     }
 
     public override void ResetValue()

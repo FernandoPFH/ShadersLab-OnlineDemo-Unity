@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "ShaderEditorUISettings", menuName = "ScriptableObjects/UI/ShaderEditorUI/ShaderEditorUISettings")]
 public class ShaderEditorUISettings : SelfLoadedScriptableObject<ShaderEditorUISettings>
 {

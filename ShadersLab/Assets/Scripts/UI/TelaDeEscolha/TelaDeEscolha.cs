@@ -3,6 +3,8 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class TelaDeEscolha : Singleton<TelaDeEscolha>
 {
     [SerializeField] private GameObject itemDoGridPrefab;

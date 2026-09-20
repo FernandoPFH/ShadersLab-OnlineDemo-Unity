@@ -104,6 +104,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -260,6 +261,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -396,6 +398,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -732,6 +735,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -888,6 +892,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1027,6 +1032,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1184,6 +1190,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1644,6 +1651,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1858,6 +1866,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1923,7 +1932,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d364eade4e7a57f0b9b59c10ca0af144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragMultiplier: 0.01
   inputField: {fileID: 1128706801422945454}
+  dragCursorTexture: {fileID: 0}
 --- !u!1 &3150139421071672606
 GameObject:
   m_ObjectHideFlags: 0
@@ -2136,6 +2147,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2292,6 +2304,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2430,6 +2443,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2495,7 +2509,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d364eade4e7a57f0b9b59c10ca0af144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragMultiplier: 0.01
   inputField: {fileID: 8505187362814552660}
+  dragCursorTexture: {fileID: 0}
 --- !u!1 &6335993007050886192
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,6 +2737,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2786,7 +2803,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d364eade4e7a57f0b9b59c10ca0af144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragMultiplier: 0.01
   inputField: {fileID: 2505515356977239089}
+  dragCursorTexture: {fileID: 0}
 --- !u!1 &7581432678911066702
 GameObject:
   m_ObjectHideFlags: 0
@@ -3358,6 +3377,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -3423,7 +3443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d364eade4e7a57f0b9b59c10ca0af144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragMultiplier: 0.01
   inputField: {fileID: 5475862637842825101}
+  dragCursorTexture: {fileID: 0}
 --- !u!1001 &3202247932332320051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3432,6 +3454,146 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3320330701723320973}
     m_Modifications:
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[0].Key
+      value: Animated Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[1].Key
+      value: animated Textures
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[2].Key
+      value: Numbers
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[3].Key
+      value: Miscellaneous
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[0].Value.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[1].Value.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[2].Value.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: ListsOfTextures.items.Array.data[3].Value.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2800000, guid: ba6a1098712f522418697e7a4893fb62, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 6dda137af8358a248b686c09e34733f2, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: eb3feefd835775241a204200cc0c3a96, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 9847281c7fd00f945b2084a536c4d400, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 135e0911962cbb24098894598acf44b7, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2800000, guid: c5896b76872c676488ab81350f954ba3, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2800000, guid: fbe6e80cd9587334fb840031de89c672, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[7]'
+      value: 
+      objectReference: {fileID: 2800000, guid: ea1ad820d45466d4795f65b8bcdfaac9, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[0].Value.Array.data[8]'
+      value: 
+      objectReference: {fileID: 2800000, guid: ed5355cd5f09dcb4c9f33267d904d07a, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[1].Value.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 13d72cc8c05a9224596b442614e0729c, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[2].Value.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 09390f54ab76b165a88e1b7393a07c82, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[2].Value.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 2a07a69e28cf1c468abba8cd284fc0cc, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[2].Value.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 1c269567465a71d15980bc49a2658cf3, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[3].Value.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2800000, guid: cea2c9bf87b0c4dfdafb697a3ff00959, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[3].Value.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 6a9d1d221a3c94d83b614d921df0402e, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[3].Value.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 78e9e608c3c9d47a3b312c2908d10f46, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[3].Value.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2800000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[3].Value.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2800000, guid: 22f1a14cabc2e314aac392d98ee2d46c, type: 3}
+    - target: {fileID: 36112966398710190, guid: ab1e94ed606f4215f9e7f3d0ce571977,
+        type: 3}
+      propertyPath: 'ListsOfTextures.items.Array.data[3].Value.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2800000, guid: ab5248cb52e5b6023bc03a0b742fbc31, type: 3}
     - target: {fileID: 7102017819492410308, guid: ab1e94ed606f4215f9e7f3d0ce571977,
         type: 3}
       propertyPath: m_Name

@@ -30,7 +30,7 @@ public class FloatUIData : ShaderUIData<float>
                 lastValue = parsedValue;
             }
             else
-                textfield.text = lastValue.ToString();
+                textfield.text = lastValue.ToString("n2");
         });
     }
 
@@ -38,6 +38,6 @@ public class FloatUIData : ShaderUIData<float>
     {
         material.SetFloat(nameID, defaultValue);
 
-        UI.GetComponentInChildren<TMP_InputField>().text = defaultValue.ToString();
+        UI.GetComponentInChildren<TMP_InputField>().text = defaultValue.ToString("n2");
     }
 }

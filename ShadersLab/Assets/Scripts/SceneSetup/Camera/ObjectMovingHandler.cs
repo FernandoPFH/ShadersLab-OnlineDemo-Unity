@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "ObjectMovingHandler", menuName = "ScriptableObjects/Scene Setup/Camera/ObjectMovingHandler")]
 public class ObjectMovingHandler : CameraHandler
 {

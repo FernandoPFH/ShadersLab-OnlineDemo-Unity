@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "AnimationBackgroundObjectsSettings", menuName = "ScriptableObjects/UI 3D/AnimationBackgroundObjectsSettings")]
 public class AnimationBackgroundObjectsSettings : SelfLoadedScriptableObject<AnimationBackgroundObjectsSettings>
 {

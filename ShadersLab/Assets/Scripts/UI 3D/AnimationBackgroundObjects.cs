@@ -1,6 +1,8 @@
 using System.Linq;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class AnimationBackgroundObjects : Singleton<AnimationBackgroundObjects>
 {
     private AnimationState state;

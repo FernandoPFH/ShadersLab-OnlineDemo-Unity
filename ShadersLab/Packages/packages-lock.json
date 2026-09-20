@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.fernandopfh.essentials": {
+      "version": "https://github.com/FernandoPFH/Essentials-Package-Unity.git?path=EssentialsPackage/Assets/FernandoPFH_Essentials",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dd7ffacac9dfa0dac53b14160013551fb2434677"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 1,

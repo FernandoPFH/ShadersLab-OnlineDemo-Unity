@@ -32,10 +32,10 @@ public class RangeUIData : ShaderUIData<float>
         slider.onValueChanged.AddListener(delegate
         {
             material.SetFloat(nameID, slider.value);
-            textfield.text = slider.value.ToString();
+            textfield.text = slider.value.ToString("n2");
         });
 
-        textfield.onValueChanged.AddListener(delegate
+        textfield.onEndEdit.AddListener(delegate
         {
             if (float.TryParse(textfield.text.Replace(".", ","), out float parsedValue))
             {
@@ -43,7 +43,7 @@ public class RangeUIData : ShaderUIData<float>
                 slider.value = parsedValue;
             }
             else
-                textfield.text = lastValue.ToString();
+                textfield.text = lastValue.ToString("n2");
         });
     }
 

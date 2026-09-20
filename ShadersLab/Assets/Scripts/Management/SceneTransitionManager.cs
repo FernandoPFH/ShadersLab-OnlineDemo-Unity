@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class SceneTransitionManager : Singleton<SceneTransitionManager>
 {
     private string shaderDisplayScene = "Assets/Scenes/ShaderDisplay.unity";

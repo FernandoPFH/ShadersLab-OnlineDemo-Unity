@@ -1,6 +1,8 @@
 using System.Linq;
 using UnityEngine;
 
+using FernandoPFH_Essentials_Runtime;
+
 public class PlaceManager : Singleton<PlaceManager>
 {
     public static bool IsCurrentlyEnabled => CurrentPlace;

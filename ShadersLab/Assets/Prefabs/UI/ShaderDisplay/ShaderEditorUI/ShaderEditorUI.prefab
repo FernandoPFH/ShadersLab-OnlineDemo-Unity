@@ -181,8 +181,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4092734514583462136}
-        m_TargetAssemblyTypeName: ShaderEditorUI, Assembly-CSharp
+      - m_Target: {fileID: 28171205427764009}
+        m_TargetAssemblyTypeName: ColapsableUI, Assembly-CSharp
         m_MethodName: HandleToggle
         m_Mode: 0
         m_Arguments:
@@ -521,6 +521,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -963,6 +964,7 @@ GameObject:
   - component: {fileID: 6767470524100946225}
   - component: {fileID: 4972022199554879602}
   - component: {fileID: 2659766446414465233}
+  - component: {fileID: 28171205427764009}
   - component: {fileID: 4092734514583462136}
   - component: {fileID: 6629143685103154068}
   m_Layer: 5
@@ -1057,6 +1059,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &28171205427764009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8225963705689220162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a7b3f4ac4f8784fb5c5508c9423b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColapsableUI
+  header: {fileID: 1541831632682357168}
 --- !u!114 &4092734514583462136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,9 +1084,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c145ca6b1d854ce62b5d61c6f3700810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duplicatesApproach: 0
   scrollViewContentContainer: {fileID: 6406681977843134353}
-  eventTrigger: {fileID: 6629143685103154068}
-  header: {fileID: 1541831632682357168}
 --- !u!114 &6629143685103154068
 MonoBehaviour:
   m_ObjectHideFlags: 0

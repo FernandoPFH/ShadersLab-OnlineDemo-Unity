@@ -5,6 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+using FernandoPFH_Essentials_Runtime;
+
 [CreateAssetMenu(fileName = "TextureUICreator", menuName = "ScriptableObjects/UI/ShaderEditorUI/Creators/TextureUICreator")]
 public class TextureUICreator : ShaderEditorUICreator<TextureUIData>
 {

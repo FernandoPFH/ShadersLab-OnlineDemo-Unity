@@ -4,29 +4,12 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.UI;
+
+using FernandoPFH_Essentials_Runtime;
 
 public class ShaderEditorUI : Singleton<ShaderEditorUI>
 {
     [SerializeField] private Transform scrollViewContentContainer;
-    [SerializeField] private GameObject header;
-
-    private float openHeight;
-    private float closeHeight;
-    private RectTransform rectTransform;
-
-
-    void Start()
-    {
-        rectTransform = transform as RectTransform;
-
-        VerticalLayoutGroup verticalLayoutGroup = GetComponent<VerticalLayoutGroup>();
-
-        openHeight = rectTransform.sizeDelta.y;
-        closeHeight = header.GetComponent<LayoutElement>().minHeight + verticalLayoutGroup.padding.top + verticalLayoutGroup.padding.bottom;
-
-        rectTransform.sizeDelta = new(rectTransform.sizeDelta.x, closeHeight);
-    }
 
 
     private bool CheckForUICreatorAndBlockRest(string shaderInfo, Material material, int propertyIndex)
@@ -134,9 +117,6 @@ public class ShaderEditorUI : Singleton<ShaderEditorUI>
         foreach (ShaderEditorUISettings.ShaderUICheck shaderUICheck in ShaderEditorUISettings.UICreatorPerType.Values)
             shaderUICheck.ShaderEditorUICreatorBase.OnSceneExit();
     }
-
-    public void HandleToggle(bool isOn)
-        => rectTransform.sizeDelta = isOn ? new(rectTransform.sizeDelta.x, openHeight) : new(rectTransform.sizeDelta.x, closeHeight);
 
     private void OnApplicationQuit()
     {
