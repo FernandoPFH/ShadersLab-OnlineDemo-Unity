@@ -26,18 +26,24 @@ public static class ShaderImageTaker
 
     private static Texture2D GetScreenTextureCroped()
     {
-        int scaleFactor = Mathf.FloorToInt(Screen.height / ShaderImageTakerSettings.RefScreenSize.y);
+        RenderTexture rt = ShaderImageTakerSettings.CameraTexture;
 
-        Vector2Int borderSize = new((ShaderImageTakerSettings.RefScreenSize.x - ShaderImageTakerSettings.ImageSize) / 2, (ShaderImageTakerSettings.RefScreenSize.y - ShaderImageTakerSettings.ImageSize) / 2);
+        int scaleFactor = Mathf.Max(1, Mathf.FloorToInt((float)rt.height / ShaderImageTakerSettings.RefScreenSize.y));
+        int size = ShaderImageTakerSettings.ImageSize * scaleFactor;
 
-        borderSize *= scaleFactor;
+        Vector2Int borderSize = new(
+            (rt.width - size) / 2,
+            (rt.height - size) / 2
+        );
 
-        RenderTexture.active = ShaderImageTakerSettings.CameraTexture;
+        RenderTexture previous = RenderTexture.active;
+        RenderTexture.active = rt;
 
-        Texture2D texture = new(ShaderImageTakerSettings.ImageSize * scaleFactor, ShaderImageTakerSettings.ImageSize * scaleFactor);
-        texture.ReadPixels(new Rect(borderSize.x, borderSize.y, ShaderImageTakerSettings.ImageSize * scaleFactor, ShaderImageTakerSettings.ImageSize * scaleFactor), 0, 0);
+        Texture2D texture = new(size, size, TextureFormat.RGBA32, false);
+        texture.ReadPixels(new Rect(borderSize.x, borderSize.y, size, size), 0, 0);
         texture.Apply();
 
+        RenderTexture.active = previous;
         return texture;
     }
 
